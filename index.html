@@ -14,7 +14,7 @@
   <!-- NAV -->
   <nav class="nav" id="nav">
     <div class="nav__inner">
-      <a href="#hero" class="nav__logo">AB<span>.</span></a>
+      <a href="#hero" class="nav__logo"><img src="/img/logo.svg" alt="Аліна Бугаєва" class="nav__logo-img" /></a>
       <ul class="nav__links">
         <li><a href="#about">Про мене</a></li>
         <li><a href="#works">Роботи</a></li>
@@ -58,7 +58,7 @@
           <span class="hero__title-outline">запам'ятовується</span>
         </h1>
         <p class="hero__sub">
-          Фото і відео для брендів · Контент для блогерів · YouTube-обкладинки
+          Створюю AI-зйомки для брендів, візуальний контент для блогерів, YouTube-обкладинки та креативи для реклами — усе, що допомагає виділятися серед конкурентів.
         </p>
         <div class="hero__actions">
           <a href="#works" class="btn btn--primary">Переглянути роботи</a>
@@ -83,21 +83,21 @@
       </div>
       <div class="hero__visual">
         <div class="hero__card hero__card--main">
-          <img src="приклад/2b06ff3e9ec4077a01eca190f4658fa4_cdd394dd_f31a_4b61_ae15_8c72ac4e72de.png" alt="Fashion shoot" class="hero__card-photo" />
+          <img src="img/portfolio/2b06ff3e9ec4077a01eca190f4658fa4_cdd394dd_f31a_4b61_ae15_8c72ac4e72de.png" alt="Fashion shoot" class="hero__card-photo" />
           <div class="hero__card-info">
             <span class="tag">Fashion Brand</span>
             <p>Location Shoot</p>
           </div>
         </div>
         <div class="hero__card hero__card--sm hero__card--top">
-          <img src="приклад/IMG_5692.PNG" alt="Beauty" class="hero__card-photo" />
+          <img src="img/portfolio/IMG_5692.PNG" alt="Beauty" class="hero__card-photo" />
           <div class="hero__card-sm-label">
             <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg>
             Beauty Shot
           </div>
         </div>
         <div class="hero__card hero__card--sm hero__card--bot">
-          <img src="приклад/photo_2026-04-10 01.07.02.jpeg" alt="Lifestyle" class="hero__card-photo" />
+          <video src="/img/reels.mp4" autoplay muted loop playsinline class="hero__card-photo"></video>
           <div class="hero__card-sm-label hero__card-sm-label--pink">
             <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z"/></svg>
             Reels / TikTok
@@ -107,10 +107,6 @@
     </div>
 
     <div class="hero__bottom">
-      <div class="hero__scroll">
-        <div class="hero__scroll-line"></div>
-        <span>Скрол</span>
-      </div>
       <div class="marquee">
         <div class="marquee__track">
           <span>Фото для брендів</span><span class="marquee__dot">✦</span>
@@ -141,34 +137,55 @@
     <div class="container">
       <div class="about__inner">
         <div class="about__visual">
-          <div class="about__photo">
-            <img src="приклад/hero.jpg" alt="Аліна Бугаєва" class="about__photo-real" />
+          <div class="about__photo-wrap">
+            <div class="about__photo-glow"></div>
+            <div class="about__photo">
+              <img src="img/main.png" alt="Аліна Бугаєва" class="about__photo-real" />
+            </div>
             <div class="about__photo-badge">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
               <span>Top Rated</span>
             </div>
           </div>
-          <div class="about__floating about__floating--1">
-            <strong>120+</strong>
-            <span>Задоволених клієнтів</span>
+
+          <div class="about__chip about__chip--1">
+            <div class="about__chip-icon about__chip-icon--purple">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            </div>
+            <div class="about__chip-text">
+              <strong>120+</strong>
+              <span>Задоволених клієнтів</span>
+            </div>
           </div>
-          <div class="about__floating about__floating--2">
-            <strong>Швидко</strong>
-            <span>Здаю вчасно</span>
+
+          <div class="about__chip about__chip--2">
+            <div class="about__chip-icon about__chip-icon--yellow">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M13 2.05V4.07c3.95.49 7 3.85 7 7.93s-3.05 7.44-7 7.93v2.02c5.05-.5 9-4.76 9-9.95S18.05 2.55 13 2.05zM11 2.05C5.95 2.55 2 6.81 2 12s3.95 9.45 9 9.95v-2.02C7.05 19.44 4 16.08 4 12s3.05-7.44 7-7.93V2.05zM12 6l-1 5H7l4 3-1.5 5L13 16l3.5 3L15 14l4-3h-4L12 6z"/></svg>
+            </div>
+            <div class="about__chip-text">
+              <strong>3+ роки</strong>
+              <span>Досвіду</span>
+            </div>
+          </div>
+
+          <div class="about__chip about__chip--3">
+            <div class="about__chip-icon about__chip-icon--pink">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+            </div>
+            <div class="about__chip-text">
+              <strong>Швидко</strong>
+              <span>Здаю вчасно</span>
+            </div>
           </div>
         </div>
         <div class="about__text">
           <p class="section-label">Про мене</p>
           <h2 class="section-title">Привіт, я Аліна!</h2>
-          <p class="about__lead">Контент-дизайнер і фотограф з 3+ роками досвіду у створенні візуального контенту для брендів і блогерів.</p>
-          <p>Я спеціалізуюсь на комерційній фотографії, відео для соціальних мереж та дизайні YouTube-обкладинок. Моя мета — зробити ваш контент таким, що зупиняє скрол і збільшує продажі.</p>
+          <p class="about__lead">Працюю з брендами, блогерами та експертами, яким потрібен не просто гарний контент, а візуал, що працює на увагу, довіру та результат.</p>
           <div class="about__skills">
             <div class="skill-tag">Adobe Photoshop</div>
-            <div class="skill-tag">Adobe Premiere</div>
-            <div class="skill-tag">Lightroom</div>
             <div class="skill-tag">Figma</div>
             <div class="skill-tag">CapCut</div>
-            <div class="skill-tag">After Effects</div>
           </div>
           <a href="#contact" class="btn btn--primary">Поговоримо про проєкт</a>
         </div>
@@ -186,37 +203,26 @@
 
       <div class="works__filter" id="workFilter">
         <button class="filter-btn active" data-filter="all">Усі</button>
-        <button class="filter-btn" data-filter="photo">Фото</button>
+        <button class="filter-btn" data-filter="photo">AI-фото</button>
         <button class="filter-btn" data-filter="video">Відео</button>
         <button class="filter-btn" data-filter="youtube">YouTube</button>
-        <button class="filter-btn" data-filter="blogger">Блогери</button>
+        <button class="filter-btn" data-filter="ad">Реклама</button>
       </div>
 
       <div class="works__grid" id="worksGrid">
 
-        <!-- 1: Photo — product dress white bg -->
-        <div class="work-item" data-cat="photo">
-          <div class="work-item__img">
-            <img src="приклад/мод + сукня + взуття.png" alt="Модний одяг · Предметна зйомка" loading="lazy" />
-            <div class="work-item__overlay">
-              <span class="tag">Одяг · Предметна</span>
-              <h4>Мод + Сукня + Взуття</h4>
-            </div>
-          </div>
-        </div>
-
-        <!-- 2: Video — fashion reel (wide) -->
+        <!-- 1: Video — wide -->
         <div class="work-item work-item--wide" data-cat="video">
           <div class="work-item__img">
             <video
-              src="приклад/від1.mp4"
-              poster="приклад/IMG_5690.PNG"
+              src="img/portfolio/IMG_5999.MOV"
               loop muted playsinline
               class="work-item__video"
             ></video>
             <div class="work-item__overlay">
-              <span class="tag tag--yellow">Відео · Fashion Reel</span>
-              <h4>Fashion Brand × Reels</h4>
+              <span class="tag tag--yellow">Відео · Reels</span>
+              <h4>Рекламний відеоролик</h4>
+              <p class="work-item__desc">Короткий ролик для Instagram та TikTok</p>
             </div>
           </div>
           <div class="work-item__play">
@@ -224,76 +230,98 @@
           </div>
         </div>
 
-        <!-- 3: Photo — beauty close-up -->
+        <!-- 2: AI Lifestyle photo for blogger -->
         <div class="work-item" data-cat="photo">
           <div class="work-item__img">
-            <img src="приклад/IMG_5692.PNG" alt="Beauty зйомка · Makeup" loading="lazy" />
+            <img src="img/portfolio/photo_2026-04-21_10-49-01.jpg" alt="AI Lifestyle фото для блогера" loading="lazy" />
             <div class="work-item__overlay">
-              <span class="tag">Beauty · Портрет</span>
-              <h4>Beauty Campaign</h4>
+              <span class="tag">AI-фото · Lifestyle</span>
+              <h4>AI Lifestyle для блогера</h4>
+              <p class="work-item__desc">Lifestyle-зйомка на відкритому повітрі</p>
             </div>
           </div>
         </div>
 
-        <!-- 4: Blogger — lifestyle kitchen -->
-        <div class="work-item" data-cat="blogger">
-          <div class="work-item__img">
-            <img src="приклад/photo_2026-04-10 01.07.02.jpeg" alt="Lifestyle блогер" loading="lazy" />
-            <div class="work-item__overlay">
-              <span class="tag">Lifestyle · Блогер</span>
-              <h4>@blogger.content</h4>
-            </div>
-          </div>
-        </div>
-
-        <!-- 5: Photo tall — dress location shoot -->
-        <div class="work-item work-item--tall" data-cat="photo">
-          <div class="work-item__img">
-            <img src="приклад/2b06ff3e9ec4077a01eca190f4658fa4_cdd394dd_f31a_4b61_ae15_8c72ac4e72de.png" alt="Fashion dress location" loading="lazy" />
-            <div class="work-item__overlay">
-              <span class="tag tag--yellow">Fashion · Локація</span>
-              <h4>Fashion Brand Shoot</h4>
-            </div>
-          </div>
-        </div>
-
-        <!-- 6: YouTube — dramatic fashion cover -->
+        <!-- 3: YouTube thumbnail -->
         <div class="work-item" data-cat="youtube">
           <div class="work-item__img">
-            <img src="приклад/IMG_5688.PNG" alt="YouTube обкладинка · Fashion" loading="lazy" />
+            <img src="img/portfolio/Обклад для блогера.png" alt="YouTube thumbnail — Їжа з TikTok" loading="lazy" />
             <div class="work-item__overlay">
-              <span class="tag tag--pink">YouTube Cover</span>
-              <h4>Fashion Vlog Thumbnail</h4>
+              <span class="tag tag--pink">YouTube · Thumbnail</span>
+              <h4>Обкладинка для YouTube</h4>
+              <p class="work-item__desc">«Їжа з TikTok» — thumbnail для кулінарного каналу</p>
             </div>
           </div>
         </div>
 
-        <!-- 7: Video — brand video with poster -->
-        <div class="work-item" data-cat="video">
+        <!-- 4: AI Beauty brand — tall -->
+        <div class="work-item work-item--tall" data-cat="photo">
           <div class="work-item__img">
-            <video
-              src="приклад/IMG_5695.MP4"
-              poster="приклад/IMG_5687.PNG"
-              loop muted playsinline
-              class="work-item__video"
-            ></video>
+            <img src="img/portfolio/4cef482e1964798bc12eab5235d1e3c5_7aa2f510_318f_4104_a8c2_fdaf1e2b25b3.png" alt="AI Beauty фото для бренду" loading="lazy" />
             <div class="work-item__overlay">
-              <span class="tag">Brand Video</span>
-              <h4>Street Fashion × Brand</h4>
+              <span class="tag">AI-фото · Beauty</span>
+              <h4>AI-фото для beauty бренду</h4>
+              <p class="work-item__desc">Рекламний контент для косметичного бренду</p>
             </div>
-          </div>
-          <div class="work-item__play">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
           </div>
         </div>
 
-        <!-- 8: Blogger — NYC street blogger -->
-        <div class="work-item" data-cat="blogger">
+        <!-- 5: Hookah delivery Stories ad -->
+        <div class="work-item" data-cat="ad">
           <div class="work-item__img">
-            <img src="приклад/IMG_5676.JPG" alt="Lifestyle блогер NYC" loading="lazy" />
+            <img src="img/portfolio/photo_2026-04-20_15-40-01.jpg" alt="Реклама доставки кальянів — Stories" loading="lazy" />
             <div class="work-item__overlay">
-              <span class="tag tag--yellow">Street Style · Блогер</span>
-              <h4>@street.blogger</h4>
+              <span class="tag tag--pink">Реклама · Stories</span>
+              <h4>Home Нукан</h4>
+              <p class="work-item__desc">Рекламні Stories для сервісу доставки кальянів</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6: Crypto exchange Stories ad -->
+        <div class="work-item" data-cat="ad">
+          <div class="work-item__img">
+            <img src="img/portfolio/photo_2026-04-20_15-40-02.jpg" alt="Реклама криптообмінника — Stories" loading="lazy" />
+            <div class="work-item__overlay">
+              <span class="tag tag--yellow">Реклама · Stories</span>
+              <h4>Криптообмінник</h4>
+              <p class="work-item__desc">Рекламний пост для крипто-сервісу</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7: Real estate Stories ad -->
+        <div class="work-item" data-cat="ad">
+          <div class="work-item__img">
+            <img src="img/portfolio/photo_2026-04-20_15-40-02 (2).jpg" alt="Nagirniy House — Реклама нерухомості" loading="lazy" />
+            <div class="work-item__overlay">
+              <span class="tag">Реклама · Нерухомість</span>
+              <h4>Nagirniy House</h4>
+              <p class="work-item__desc">Рекламний Stories для житлового комплексу</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8: AI beauty close-up 1 -->
+        <div class="work-item" data-cat="photo">
+          <div class="work-item__img">
+            <img src="img/portfolio/76b34d0049a98415cc596939a2581c2d_7e455519_bbfa_46d9_8200_5781f9703dcf.png" alt="AI Beauty close-up портрет" loading="lazy" />
+            <div class="work-item__overlay">
+              <span class="tag">AI-фото · Портрет</span>
+              <h4>Beauty Close-up</h4>
+              <p class="work-item__desc">Крупний план — natural glow</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 9: AI beauty close-up 2 -->
+        <div class="work-item" data-cat="photo">
+          <div class="work-item__img">
+            <img src="img/portfolio/f8ba6398be6a35e9962209f69a692300_f823017d_f3a4_4e8f_8667_ca044c061f55.png" alt="AI Beauty портрет — чистий образ" loading="lazy" />
+            <div class="work-item__overlay">
+              <span class="tag">AI-фото · Close-up</span>
+              <h4>Beauty Portrait</h4>
+              <p class="work-item__desc">Природній макіяж, крупний план</p>
             </div>
           </div>
         </div>
@@ -310,37 +338,78 @@
         <h2 class="section-title">Процес роботи</h2>
       </div>
       <div class="process__steps">
+
         <div class="process__step">
+          <div class="process__icon-wrap">
+            <div class="process__pulse"></div>
+            <div class="process__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            </div>
+          </div>
           <div class="process__num">01</div>
           <div class="process__content">
             <h4>Брифінг</h4>
             <p>Обговорюємо ваш бренд, цілі, референси та побажання. Узгоджуємо стиль і терміни.</p>
           </div>
         </div>
-        <div class="process__arrow">→</div>
+
+        <div class="process__connector">
+          <div class="process__connector-line"></div>
+          <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14"><path d="M8 0l2.5 5.5L16 8l-5.5 2.5L8 16l-2.5-5.5L0 8l5.5-2.5z"/></svg>
+        </div>
+
         <div class="process__step">
+          <div class="process__icon-wrap">
+            <div class="process__pulse"></div>
+            <div class="process__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            </div>
+          </div>
           <div class="process__num">02</div>
           <div class="process__content">
             <h4>Концепція</h4>
             <p>Розробляю мудборд і концепт. Показую напрямок до початку зйомки.</p>
           </div>
         </div>
-        <div class="process__arrow">→</div>
+
+        <div class="process__connector">
+          <div class="process__connector-line"></div>
+          <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14"><path d="M8 0l2.5 5.5L16 8l-5.5 2.5L8 16l-2.5-5.5L0 8l5.5-2.5z"/></svg>
+        </div>
+
         <div class="process__step">
+          <div class="process__icon-wrap">
+            <div class="process__pulse"></div>
+            <div class="process__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+            </div>
+          </div>
           <div class="process__num">03</div>
           <div class="process__content">
             <h4>Виробництво</h4>
             <p>Зйомка, монтаж або дизайн. Повний контроль якості на кожному етапі.</p>
           </div>
         </div>
-        <div class="process__arrow">→</div>
+
+        <div class="process__connector">
+          <div class="process__connector-line"></div>
+          <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14"><path d="M8 0l2.5 5.5L16 8l-5.5 2.5L8 16l-2.5-5.5L0 8l5.5-2.5z"/></svg>
+        </div>
+
         <div class="process__step">
+          <div class="process__icon-wrap">
+            <div class="process__pulse"></div>
+            <div class="process__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+          </div>
           <div class="process__num">04</div>
           <div class="process__content">
             <h4>Здача</h4>
             <p>Фінальні файли у потрібних форматах. Правки включені.</p>
           </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -352,66 +421,37 @@
         <p class="section-label">Що я роблю</p>
         <h2 class="section-title">Послуги</h2>
       </div>
-      <div class="services__grid">
-
-        <div class="service-card service-card--featured">
-          <div class="service-card__icon">
-            <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="2"/><path d="M16 32l6-8 4 5 4-6 6 9H16z" fill="currentColor" opacity=".3"/><circle cx="18" cy="18" r="3" fill="currentColor"/></svg>
-          </div>
+      <div class="sv10-grid">
+        <div class="sv10-card" style="--c:176,110,243;--c2:124,58,237">
+          <div class="sv10-header"><span class="sv10-num">01</span><div class="sv10-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div></div>
           <h3>Фото продуктів для брендів</h3>
-          <p>Комерційна зйомка товарів у студії та на локації. Косметика, їжа, одяг, аксесуари — будь-яка категорія.</p>
-          <ul class="service-card__list">
-            <li>Предметна зйомка</li>
-            <li>Lifestyle-фото</li>
-            <li>Флетлей / knolling</li>
-            <li>Ретуш і кольорокорекція</li>
-          </ul>
-          <span class="service-card__price">від 2 500 грн</span>
+          <p>Комерційна зйомка товарів у студії та на локації.</p>
+          <ul class="sv10-tags"><li>Предметна зйомка</li><li>Lifestyle-фото</li><li>Ретуш</li></ul>
+          <div class="sv10-foot"><b>від 2 500 грн</b><a href="#contact">Замовити →</a></div>
         </div>
-
-        <div class="service-card">
-          <div class="service-card__icon">
-            <svg viewBox="0 0 48 48" fill="none"><rect x="4" y="10" width="40" height="28" rx="4" stroke="currentColor" stroke-width="2"/><path d="M20 18l10 6-10 6V18z" fill="currentColor"/></svg>
-          </div>
+        <div class="sv10-card" style="--c:244,114,182;--c2:219,39,119">
+          <div class="sv10-header"><span class="sv10-num">02</span><div class="sv10-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div></div>
           <h3>Відео товарів</h3>
-          <p>Короткі рекламні ролики для Instagram, TikTok та YouTube. Uppack-відео, огляди, анімація продукту.</p>
-          <ul class="service-card__list">
-            <li>Reels / Shorts</li>
-            <li>Product showcase</li>
-            <li>Монтаж і графіка</li>
-          </ul>
-          <span class="service-card__price">від 3 500 грн</span>
+          <p>Короткі рекламні ролики для Instagram, TikTok та YouTube.</p>
+          <ul class="sv10-tags"><li>Reels / Shorts</li><li>Product showcase</li><li>Монтаж</li></ul>
+          <div class="sv10-foot"><b>від 3 500 грн</b><a href="#contact">Замовити →</a></div>
         </div>
-
-        <div class="service-card">
-          <div class="service-card__icon">
-            <svg viewBox="0 0 48 48" fill="none"><rect x="4" y="8" width="40" height="32" rx="3" stroke="currentColor" stroke-width="2"/><path d="M4 16h40" stroke="currentColor" stroke-width="2"/><circle cx="10" cy="12" r="2" fill="currentColor"/><circle cx="16" cy="12" r="2" fill="currentColor"/></svg>
-          </div>
+        <div class="sv10-card" style="--c:245,200,66;--c2:202,138,4">
+          <div class="sv10-header"><span class="sv10-num">03</span><div class="sv10-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg></div></div>
           <h3>YouTube-обкладинки</h3>
-          <p>Яскраві, клікабельні thumbnails, що збільшують CTR. Єдиний стиль для всього каналу.</p>
-          <ul class="service-card__list">
-            <li>Дизайн мініатюр</li>
-            <li>Шаблони для серій</li>
-            <li>Банери каналу</li>
-          </ul>
-          <span class="service-card__price">від 800 грн / шт</span>
+          <p>Яскраві thumbnails що збільшують CTR каналу.</p>
+          <ul class="sv10-tags"><li>Дизайн мініатюр</li><li>Шаблони серій</li><li>Банери</li></ul>
+          <div class="sv10-foot"><b>від 800 грн / шт</b><a href="#contact">Замовити →</a></div>
         </div>
-
-        <div class="service-card">
-          <div class="service-card__icon">
-            <svg viewBox="0 0 48 48" fill="none"><path d="M24 4l4 8h8l-6.5 5 2.5 8L24 20l-8 5 2.5-8L12 12h8l4-8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
-          </div>
+        <div class="sv10-card" style="--c:34,211,238;--c2:6,182,212">
+          <div class="sv10-header"><span class="sv10-num">04</span><div class="sv10-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div></div>
           <h3>Контент для блогерів</h3>
-          <p>Повний контент-пакет для соціальних мереж: Stories, пости, Reels, TikTok. Єдина естетика профілю.</p>
-          <ul class="service-card__list">
-            <li>Контент-план</li>
-            <li>Фото та відео</li>
-            <li>Stories-шаблони</li>
-          </ul>
-          <span class="service-card__price">від 5 000 грн / міс</span>
+          <p>Повний контент-пакет для соцмереж: Stories, Reels, TikTok.</p>
+          <ul class="sv10-tags"><li>Контент-план</li><li>Фото та відео</li><li>Stories</li></ul>
+          <div class="sv10-foot"><b>від 5 000 грн / міс</b><a href="#contact">Замовити →</a></div>
         </div>
-
       </div>
+
     </div>
   </section>
 
@@ -518,7 +558,7 @@
   <footer class="footer">
     <div class="container">
       <div class="footer__inner">
-        <a href="#hero" class="footer__logo">AB<span>.</span></a>
+        <a href="#hero" class="footer__logo"><img src="logo.png" alt="Аліна Бугаєва" class="footer__logo-img" /></a>
         <p class="footer__copy">© 2025 Аліна Бугаєва. Всі права захищені.</p>
         <div class="footer__socials">
           <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
