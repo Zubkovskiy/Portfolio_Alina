@@ -535,18 +535,51 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
   });
 });
 
-// ── Contact form ────────────────────────────────────────────────
-document.getElementById('contactForm').addEventListener('submit', e => {
+// ── Contact form → Telegram ─────────────────────────────────────
+const TG_TOKEN   = '8373382072:AAGu3NUNscmqeZLsOdW8e4ozLhSk-JQ5Xhg';
+const TG_CHAT_ID = '443233079';
+
+document.getElementById('contactForm').addEventListener('submit', async e => {
   e.preventDefault();
-  e.target.innerHTML = `
-    <div class="form-success">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-      </svg>
-      <h3>Заявку надіслано!</h3>
-      <p>Дякую за звернення. Відповім протягом 24 годин.</p>
-    </div>
-  `;
+  const form = e.target;
+  const btn  = form.querySelector('button[type="submit"]');
+
+  const name    = form.name.value.trim();
+  const contact = form.email.value.trim();
+  const service = form.service.value || '—';
+  const message = form.message.value.trim();
+
+  const text = `📩 <b>Нова заявка з сайту!</b>\n\n` +
+               `👤 <b>Ім'я:</b> ${name}\n` +
+               `📬 <b>Контакт:</b> ${contact}\n` +
+               `🎯 <b>Послуга:</b> ${service}\n` +
+               `💬 <b>Повідомлення:</b>\n${message}`;
+
+  btn.disabled    = true;
+  btn.textContent = 'Надсилаємо...';
+
+  try {
+    const res = await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: TG_CHAT_ID, text, parse_mode: 'HTML' })
+    });
+
+    if (!res.ok) throw new Error();
+
+    form.innerHTML = `
+      <div class="form-success">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        <h3>Заявку надіслано!</h3>
+        <p>Дякую за звернення. Відповім протягом 24 годин.</p>
+      </div>`;
+  } catch {
+    btn.disabled    = false;
+    btn.textContent = 'Надіслати заявку';
+    alert('Помилка надсилання. Спробуй ще раз або напиши напряму в Telegram.');
+  }
 });
 
 // ── Scroll Reveal ───────────────────────────────────────────────
