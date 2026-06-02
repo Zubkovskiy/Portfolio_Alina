@@ -544,10 +544,11 @@ document.getElementById('contactForm').addEventListener('submit', async e => {
   const form = e.target;
   const btn  = form.querySelector('button[type="submit"]');
 
-  const name    = form.name.value.trim();
-  const contact = form.email.value.trim();
-  const service = form.service.value || '—';
-  const message = form.message.value.trim();
+  const data    = new FormData(form);
+  const name    = (data.get('name')    || '').trim();
+  const contact = (data.get('email')   || '').trim();
+  const service = (data.get('service') || '—');
+  const message = (data.get('message') || '').trim();
 
   const text = `📩 <b>Нова заявка з сайту!</b>\n\n` +
                `👤 <b>Ім'я:</b> ${name}\n` +
