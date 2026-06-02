@@ -14,7 +14,10 @@
   <!-- NAV -->
   <nav class="nav" id="nav">
     <div class="nav__inner">
-      <a href="#hero" class="nav__logo"><img src="/img/logo.svg" alt="Аліна Бугаєва" class="nav__logo-img" /></a>
+      <a href="#hero" class="nav__logo">
+        <img src="img/logo.svg" alt="Crea Studio" class="nav__logo-img" />
+        <span class="nav__logo-text">Crea <strong>studio</strong></span>
+      </a>
       <ul class="nav__links">
         <li><a href="#about">Про мене</a></li>
         <li><a href="#works">Роботи</a></li>
@@ -53,12 +56,11 @@
           Доступна для нових проєктів
         </div>
         <h1 class="hero__title">
-          Контент, який<br />
-          <em>продає</em> і<br />
-          <span class="hero__title-outline">запам'ятовується</span>
+          Студія креативних<br />
+          <span class="hero__title-outline">AI-візуалів</span>
         </h1>
         <p class="hero__sub">
-          Створюю AI-зйомки для брендів, візуальний контент для блогерів, YouTube-обкладинки та креативи для реклами — усе, що допомагає виділятися серед конкурентів.
+          Від ідеї до готового контенту
         </p>
         <div class="hero__actions">
           <a href="#works" class="btn btn--primary">Переглянути роботи</a>
@@ -66,17 +68,17 @@
         </div>
         <div class="hero__stats">
           <div class="hero__stat">
-            <strong>120+</strong>
+            <strong>50+</strong>
             <span>Проєктів</span>
           </div>
           <div class="hero__divider"></div>
           <div class="hero__stat">
-            <strong>50+</strong>
+            <strong>30+</strong>
             <span>Брендів</span>
           </div>
           <div class="hero__divider"></div>
           <div class="hero__stat">
-            <strong>3+</strong>
+            <strong>1+</strong>
             <span>Роки досвіду</span>
           </div>
         </div>
@@ -97,7 +99,7 @@
           </div>
         </div>
         <div class="hero__card hero__card--sm hero__card--bot">
-          <video src="/img/reels.mp4" autoplay muted loop playsinline class="hero__card-photo"></video>
+          <video src="img/reels.mp4" autoplay muted loop playsinline class="hero__card-photo"></video>
           <div class="hero__card-sm-label hero__card-sm-label--pink">
             <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z"/></svg>
             Reels / TikTok
@@ -180,12 +182,13 @@
         </div>
         <div class="about__text">
           <p class="section-label">Про мене</p>
-          <h2 class="section-title">Привіт, я Аліна!</h2>
-          <p class="about__lead">Працюю з брендами, блогерами та експертами, яким потрібен не просто гарний контент, а візуал, що працює на увагу, довіру та результат.</p>
+          <h2 class="section-title">Привіт!</h2>
+          <p class="about__lead">Я Аліна, засновниця Creatica Studio. Працюю з брендами, блогерами та експертами, яким потрібен не просто гарний контент, а візуал, що працює на увагу, довіру та результат.</p>
           <div class="about__skills">
             <div class="skill-tag">Adobe Photoshop</div>
             <div class="skill-tag">Figma</div>
             <div class="skill-tag">CapCut</div>
+            <div class="skill-tag">Canva</div>
           </div>
           <a href="#contact" class="btn btn--primary">Поговоримо про проєкт</a>
         </div>
@@ -202,133 +205,38 @@
       </div>
 
       <div class="works__filter" id="workFilter">
-        <button class="filter-btn active" data-filter="all">Усі</button>
-        <button class="filter-btn" data-filter="photo">AI-фото</button>
+        <button class="filter-btn active" data-filter="photo">AI-фото</button>
         <button class="filter-btn" data-filter="video">Відео</button>
         <button class="filter-btn" data-filter="youtube">YouTube</button>
         <button class="filter-btn" data-filter="ad">Реклама</button>
       </div>
 
-      <div class="works__grid" id="worksGrid">
-
-        <!-- 1: Video — wide -->
-        <div class="work-item work-item--wide" data-cat="video">
-          <div class="work-item__img">
-            <video
-              src="img/portfolio/IMG_5999.MOV"
-              loop muted playsinline
-              class="work-item__video"
-            ></video>
-            <div class="work-item__overlay">
-              <span class="tag tag--yellow">Відео · Reels</span>
-              <h4>Рекламний відеоролик</h4>
-              <p class="work-item__desc">Короткий ролик для Instagram та TikTok</p>
-            </div>
-          </div>
-          <div class="work-item__play">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-          </div>
-        </div>
-
-        <!-- 2: AI Lifestyle photo for blogger -->
-        <div class="work-item" data-cat="photo">
-          <div class="work-item__img">
-            <img src="img/portfolio/photo_2026-04-21_10-49-01.jpg" alt="AI Lifestyle фото для блогера" loading="lazy" />
-            <div class="work-item__overlay">
-              <span class="tag">AI-фото · Lifestyle</span>
-              <h4>AI Lifestyle для блогера</h4>
-              <p class="work-item__desc">Lifestyle-зйомка на відкритому повітрі</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- 3: YouTube thumbnail -->
-        <div class="work-item" data-cat="youtube">
-          <div class="work-item__img">
-            <img src="img/portfolio/Обклад для блогера.png" alt="YouTube thumbnail — Їжа з TikTok" loading="lazy" />
-            <div class="work-item__overlay">
-              <span class="tag tag--pink">YouTube · Thumbnail</span>
-              <h4>Обкладинка для YouTube</h4>
-              <p class="work-item__desc">«Їжа з TikTok» — thumbnail для кулінарного каналу</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- 4: AI Beauty brand — tall -->
-        <div class="work-item work-item--tall" data-cat="photo">
-          <div class="work-item__img">
-            <img src="img/portfolio/4cef482e1964798bc12eab5235d1e3c5_7aa2f510_318f_4104_a8c2_fdaf1e2b25b3.png" alt="AI Beauty фото для бренду" loading="lazy" />
-            <div class="work-item__overlay">
-              <span class="tag">AI-фото · Beauty</span>
-              <h4>AI-фото для beauty бренду</h4>
-              <p class="work-item__desc">Рекламний контент для косметичного бренду</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- 5: Hookah delivery Stories ad -->
-        <div class="work-item" data-cat="ad">
-          <div class="work-item__img">
-            <img src="img/portfolio/photo_2026-04-20_15-40-01.jpg" alt="Реклама доставки кальянів — Stories" loading="lazy" />
-            <div class="work-item__overlay">
-              <span class="tag tag--pink">Реклама · Stories</span>
-              <h4>Home Нукан</h4>
-              <p class="work-item__desc">Рекламні Stories для сервісу доставки кальянів</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- 6: Crypto exchange Stories ad -->
-        <div class="work-item" data-cat="ad">
-          <div class="work-item__img">
-            <img src="img/portfolio/photo_2026-04-20_15-40-02.jpg" alt="Реклама криптообмінника — Stories" loading="lazy" />
-            <div class="work-item__overlay">
-              <span class="tag tag--yellow">Реклама · Stories</span>
-              <h4>Криптообмінник</h4>
-              <p class="work-item__desc">Рекламний пост для крипто-сервісу</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- 7: Real estate Stories ad -->
-        <div class="work-item" data-cat="ad">
-          <div class="work-item__img">
-            <img src="img/portfolio/photo_2026-04-20_15-40-02 (2).jpg" alt="Nagirniy House — Реклама нерухомості" loading="lazy" />
-            <div class="work-item__overlay">
-              <span class="tag">Реклама · Нерухомість</span>
-              <h4>Nagirniy House</h4>
-              <p class="work-item__desc">Рекламний Stories для житлового комплексу</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- 8: AI beauty close-up 1 -->
-        <div class="work-item" data-cat="photo">
-          <div class="work-item__img">
-            <img src="img/portfolio/76b34d0049a98415cc596939a2581c2d_7e455519_bbfa_46d9_8200_5781f9703dcf.png" alt="AI Beauty close-up портрет" loading="lazy" />
-            <div class="work-item__overlay">
-              <span class="tag">AI-фото · Портрет</span>
-              <h4>Beauty Close-up</h4>
-              <p class="work-item__desc">Крупний план — natural glow</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- 9: AI beauty close-up 2 -->
-        <div class="work-item" data-cat="photo">
-          <div class="work-item__img">
-            <img src="img/portfolio/f8ba6398be6a35e9962209f69a692300_f823017d_f3a4_4e8f_8667_ca044c061f55.png" alt="AI Beauty портрет — чистий образ" loading="lazy" />
-            <div class="work-item__overlay">
-              <span class="tag">AI-фото · Close-up</span>
-              <h4>Beauty Portrait</h4>
-              <p class="work-item__desc">Природній макіяж, крупний план</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
+      <div class="works__grid" id="worksGrid"></div>
+      <div class="works__more" id="worksShowMore"></div>
     </div>
   </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox__backdrop" id="lbBackdrop"></div>
+    <button class="lightbox__close" id="lbClose" aria-label="Закрити">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <button class="lightbox__nav lightbox__nav--prev" id="lbPrev" aria-label="Попереднє">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="lightbox__nav lightbox__nav--next" id="lbNext" aria-label="Наступне">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <div class="lightbox__stage" id="lbStage"></div>
+    <div class="lightbox__footer">
+      <div class="lightbox__info">
+        <span class="lightbox__title" id="lbTitle"></span>
+        <span class="lightbox__counter" id="lbCounter"></span>
+      </div>
+      <div class="lightbox__thumbs" id="lbThumbs"></div>
+    </div>
+  </div>
 
   <!-- PROCESS -->
   <section class="process">
@@ -513,13 +421,13 @@
           <h2 class="section-title">Починаємо?</h2>
           <p>Розкажіть про ваш проєкт — я відповім протягом 24 годин і запропоную оптимальне рішення.</p>
           <div class="contact__links">
-            <a href="https://instagram.com" class="contact__link" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-              @alina.content
+            <a href="mailto:linacreatica@gmail.com" class="contact__link">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              linacreatica@gmail.com
             </a>
-            <a href="https://t.me" class="contact__link" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-              @alina_design
+            <a href="https://t.me/lina_creatica" class="contact__link" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+              @lina_creatica
             </a>
           </div>
         </div>
@@ -558,7 +466,10 @@
   <footer class="footer">
     <div class="container">
       <div class="footer__inner">
-        <a href="#hero" class="footer__logo"><img src="logo.png" alt="Аліна Бугаєва" class="footer__logo-img" /></a>
+        <a href="#hero" class="footer__logo">
+          <img src="img/logo.svg" alt="Crea Studio" class="footer__logo-img" />
+          <span class="nav__logo-text">Crea <strong>studio</strong></span>
+        </a>
         <p class="footer__copy">© 2025 Аліна Бугаєва. Всі права захищені.</p>
         <div class="footer__socials">
           <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">

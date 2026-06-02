@@ -13,7 +13,6 @@ document.addEventListener('mousemove', e => {
   dot.style.top   = my + 'px';
 });
 
-// Ring follows with lerp
 (function lerp() {
   rx += (mx - rx) * 0.12;
   ry += (my - ry) * 0.12;
@@ -22,8 +21,7 @@ document.addEventListener('mousemove', e => {
   requestAnimationFrame(lerp);
 })();
 
-// Hover effect on interactive elements
-const hoverEls = 'a, button, .filter-btn, .work-item, .service-card, .testi-card, input, textarea, select';
+const hoverEls = 'a, button, .filter-btn, .pcard, .service-card, .testi-card, input, textarea, select';
 document.querySelectorAll(hoverEls).forEach(el => {
   el.addEventListener('mouseenter', () => { dot.classList.add('hovering'); ring.classList.add('hovering'); });
   el.addEventListener('mouseleave', () => { dot.classList.remove('hovering'); ring.classList.remove('hovering'); });
@@ -31,26 +29,23 @@ document.querySelectorAll(hoverEls).forEach(el => {
 
 document.addEventListener('mousedown', () => { dot.classList.add('clicking'); ring.classList.add('clicking'); });
 document.addEventListener('mouseup',   () => { dot.classList.remove('clicking'); ring.classList.remove('clicking'); });
-
-// Hide when leaving window
 document.addEventListener('mouseleave', () => { dot.style.opacity = '0'; ring.style.opacity = '0'; });
 document.addEventListener('mouseenter', () => { dot.style.opacity = '1'; ring.style.opacity = '1'; });
 
-// NAV scroll effect
+// ── NAV ────────────────────────────────────────────────────────
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 20);
 });
 
-// Burger menu
-const burger = document.getElementById('burger');
+// ── Burger ─────────────────────────────────────────────────────
+const burger     = document.getElementById('burger');
 const mobileMenu = document.getElementById('mobileMenu');
 
 burger.addEventListener('click', () => {
   burger.classList.toggle('open');
   mobileMenu.classList.toggle('open');
 });
-
 document.querySelectorAll('.mm-link').forEach(link => {
   link.addEventListener('click', () => {
     burger.classList.remove('open');
@@ -58,46 +53,487 @@ document.querySelectorAll('.mm-link').forEach(link => {
   });
 });
 
-// Video play on click
-document.querySelectorAll('.work-item').forEach(item => {
-  const video = item.querySelector('.work-item__video');
-  if (!video) return;
-  item.addEventListener('click', () => {
-    if (video.paused) {
-      video.play();
-      item.querySelector('.work-item__play').style.opacity = '0';
-    } else {
-      video.pause();
-      item.querySelector('.work-item__play').style.opacity = '1';
+// ── Project data ───────────────────────────────────────────────
+// coverPos: 'top' | 'center' | 'bottom' | '50% 30%'
+// wide: true  → займає 2 колонки
+// tall: true  → займає 2 рядки
+
+const PROJECTS = [
+
+  // ── AI-фото ──────────────────────────────────────────────────
+  {
+    id: 'fashion',
+    cat: 'photo',
+    tag: 'Fashion Brand',        tagColor: '',
+    title: 'Fashion Brand Shoot',
+    coverPos: 'top',     
+    items: [
+      { type: 'img', src: 'img/portfolio/2b06ff3e9ec4077a01eca190f4658fa4_cdd394dd_f31a_4b61_ae15_8c72ac4e72de.png' },
+      { type: 'img', src: 'img/portfolio/IMG_5692.PNG' }
+    ]
+  },
+  {
+    id: 'beauty',
+    cat: 'photo',
+    tag: 'AI-фото · Beauty',     tagColor: '',
+    title: 'AI Beauty Brand',
+    tall: true,
+    coverPos: 'c',        
+    items: [
+      { type: 'img', src: 'img/portfolio/4cef482e1964798bc12eab5235d1e3c5_7aa2f510_318f_4104_a8c2_fdaf1e2b25b3.png' },
+      { type: 'img', src: 'img/portfolio/76b34d0049a98415cc596939a2581c2d_7e455519_bbfa_46d9_8200_5781f9703dcf.png' },
+      { type: 'img', src: 'img/portfolio/f8ba6398be6a35e9962209f69a692300_f823017d_f3a4_4e8f_8667_ca044c061f55.png' }
+    ]
+  },
+  {
+    id: 'lifestyle',
+    cat: 'photo',
+    tag: 'AI-фото · Lifestyle',  tagColor: '',
+    title: 'AI Lifestyle для блогера',
+    coverPos: 'center',          
+    tall: true,
+    items: [
+      { type: 'img', src: 'img/portfolio/photo_2026-04-21_10-49-01.jpg' }
+    ]
+  },
+  {
+    id: 'frames',
+    cat: 'photo',
+    tag: 'AI-фото · Зйомка',    tagColor: '',
+    title: 'Зйомка · Кадри',
+    tall: true,
+    coverPos: 'top',          
+    items: [
+      { type: 'img', src: 'img/portfolio/кадр 1 .jpg' },
+      { type: 'img', src: 'img/portfolio/кадр 2 .png' },
+      { type: 'img', src: 'img/portfolio/кадр 3 .jpg' },
+      { type: 'img', src: 'img/portfolio/кадр 4.jpg' },
+      { type: 'img', src: 'img/portfolio/кадр 5.jpg' },
+      { type: 'img', src: 'img/portfolio/5.1 кадр.jpg' }
+    ]
+  },
+  {
+    id: 'process',
+    cat: 'photo',
+    tag: 'Behind the scenes',    tagColor: '',
+    title: 'Процес роботи',
+    coverPos: 'top',         
+    items: [
+      { type: 'img', src: 'img/portfolio/Процес 1.jpg' },
+      { type: 'img', src: 'img/portfolio/процес 2.jpg' },
+      { type: 'img', src: 'img/portfolio/процес 3.jpg' },
+      { type: 'img', src: 'img/portfolio/процес 4.jpg' },
+      { type: 'img', src: 'img/portfolio/процес 5 .jpg' }
+    ]
+  },
+  {
+    id: 'visuals',
+    cat: 'photo',
+    tag: 'AI-фото · Візуал',     tagColor: '',
+    title: 'Візуалізації',
+    coverPos: 'center',        
+    items: [
+      { type: 'img', src: 'img/portfolio/візуалізація .jpg' },
+      { type: 'img', src: 'img/portfolio/дошка речей .jpg' },
+      { type: 'img', src: 'img/portfolio/світшот .jpg' }
+    ]
+  },
+
+  // ── Відео ─────────────────────────────────────────────────────
+  {
+    id: 'reels',
+    cat: 'video',
+    tag: 'Відео · Reels',        tagColor: 'yellow',
+    title: 'Рекламний відеоролик',
+    items: [
+      { type: 'video', src: 'img/portfolio/IMG_5999.MOV' }
+    ]
+  },
+  {
+    id: 'promo',
+    cat: 'video',
+    tag: 'Відео · Promo',        tagColor: 'yellow',
+    title: 'Проморолик',
+    items: [
+      { type: 'video', src: 'img/portfolio/Проморолик.MOV' }
+    ]
+  },
+  {
+    id: 'videos',
+    cat: 'video',
+    tag: 'Відео · Серія',        tagColor: 'yellow',
+    title: 'Відеосерія',
+    wide: true,
+    items: [
+      { type: 'video', src: 'img/portfolio/від 1.mp4' },
+      { type: 'video', src: 'img/portfolio/від 2.mp4' },
+      { type: 'video', src: 'img/portfolio/від 3.mp4' },
+      { type: 'video', src: 'img/portfolio/від 4.mp4' },
+      { type: 'video', src: 'img/portfolio/від 5.mp4' },
+      { type: 'video', src: 'img/portfolio/відео світшот .mp4' }
+    ]
+  },
+
+  // ── YouTube ───────────────────────────────────────────────────
+  {
+    id: 'youtube',
+    cat: 'youtube',
+    tag: 'YouTube · Thumbnail',  tagColor: 'pink',
+    title: 'Обкладинки для YouTube',
+    coverPos: 'center',        
+    items: [
+      { type: 'img', src: 'img/portfolio/Обклад для блогера.png' }
+    ]
+  },
+
+  // ── Реклама ───────────────────────────────────────────────────
+  {
+    id: 'hookah',
+    cat: 'ad',
+    tag: 'Реклама · Stories',    tagColor: 'pink',
+    title: 'Home Нукан',
+    coverPos: 'center',        
+    items: [
+      { type: 'img', src: 'img/portfolio/photo_2026-04-20_15-40-01.jpg' }
+    ]
+  },
+  {
+    id: 'crypto',
+    cat: 'ad',
+    tag: 'Реклама · Stories',    tagColor: 'yellow',
+    title: 'Криптообмінник',
+    coverPos: 'center',       
+    items: [
+      { type: 'img', src: 'img/portfolio/photo_2026-04-20_15-40-02.jpg' }
+    ]
+  },
+  {
+    id: 'house',
+    cat: 'ad',
+    tag: 'Реклама · Нерухомість', tagColor: '',
+    title: 'Nagirniy House',
+    coverPos: 'center',         
+    items: [
+      { type: 'img', src: 'img/portfolio/photo_2026-04-20_15-40-02 (2).jpg' }
+    ]
+  },
+  {
+    id: 'branding',
+    cat: 'ad',
+    tag: 'Брендинг · Дизайн',   tagColor: '',
+    title: 'Брендинг · Візитівки',
+    coverPos: 'center',          
+    items: [
+      { type: 'img', src: 'img/portfolio/Візитівка.jpg' },
+      { type: 'img', src: 'img/portfolio/Візитівки.jpg' }
+    ]
+  },
+
+];
+
+// ── Lightbox ────────────────────────────────────────────────────
+let lbProject = null;
+let lbIndex   = 0;
+
+const lightbox  = document.getElementById('lightbox');
+const lbStage   = document.getElementById('lbStage');
+const lbTitle   = document.getElementById('lbTitle');
+const lbCounter = document.getElementById('lbCounter');
+const lbThumbs  = document.getElementById('lbThumbs');
+const lbPrev    = document.getElementById('lbPrev');
+const lbNext    = document.getElementById('lbNext');
+
+function openLightbox(project, index) {
+  lbProject = project;
+
+  lbThumbs.innerHTML = project.items.map((item, i) => {
+    if (item.type === 'video') {
+      return `<div class="lb-thumb lb-thumb--video" data-i="${i}" role="button" tabindex="0" aria-label="Відео ${i + 1}">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M8 5v14l11-7z"/></svg>
+      </div>`;
     }
+    return `<img src="${item.src}" alt="Мініатюра ${i + 1}" class="lb-thumb" data-i="${i}" loading="lazy" />`;
+  }).join('');
+
+  lbThumbs.querySelectorAll('.lb-thumb').forEach(t => {
+    t.addEventListener('click', e => { e.stopPropagation(); lbGoTo(+t.dataset.i); });
   });
+
+  lbGoTo(index);
+  lightbox.classList.add('open');
+  lightbox.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  lightbox.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+  const vid = lbStage.querySelector('video');
+  if (vid) vid.pause();
+  lbProject = null;
+}
+
+function lbGoTo(index) {
+  const vid = lbStage.querySelector('video');
+  if (vid) vid.pause();
+
+  lbIndex = index;
+  const item  = lbProject.items[index];
+  const total = lbProject.items.length;
+
+  lbStage.innerHTML = '';
+  if (item.type === 'video') {
+    const v = document.createElement('video');
+    v.src = item.src;
+    v.controls = true;
+    v.autoplay = true;
+    v.className = 'lb-media';
+    lbStage.appendChild(v);
+  } else {
+    const img = new Image();
+    img.src = item.src;
+    img.alt = lbProject.title;
+    img.className = 'lb-media';
+    lbStage.appendChild(img);
+  }
+
+  lbTitle.textContent   = lbProject.title;
+  lbCounter.textContent = total > 1 ? `${index + 1} / ${total}` : '';
+
+  lbPrev.style.display = index === 0           ? 'none' : 'flex';
+  lbNext.style.display = index === total - 1   ? 'none' : 'flex';
+
+  lbThumbs.style.display = total > 1 ? 'flex' : 'none';
+  lbThumbs.querySelectorAll('.lb-thumb').forEach((t, i) => {
+    t.classList.toggle('active', i === index);
+    if (i === index) t.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  });
+}
+
+document.getElementById('lbClose').addEventListener('click', closeLightbox);
+
+lightbox.addEventListener('click', e => {
+  if (!e.target.closest('.lightbox__stage') &&
+      !e.target.closest('.lightbox__footer') &&
+      !e.target.closest('.lightbox__nav') &&
+      !e.target.closest('.lightbox__close')) {
+    closeLightbox();
+  }
+});
+lbPrev.addEventListener('click', () => lbGoTo(lbIndex - 1));
+lbNext.addEventListener('click', () => lbGoTo(lbIndex + 1));
+
+document.addEventListener('keydown', e => {
+  if (!lightbox.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft'  && lbIndex > 0)                       lbGoTo(lbIndex - 1);
+  if (e.key === 'ArrowRight' && lbProject && lbIndex < lbProject.items.length - 1) lbGoTo(lbIndex + 1);
 });
 
-// Works filter
-const filterBtns = document.querySelectorAll('.filter-btn');
-const workItems = document.querySelectorAll('.work-item');
+let touchStartX = 0;
+lightbox.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+lightbox.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(dx) < 50) return;
+  if (dx > 0 && lbIndex > 0) lbGoTo(lbIndex - 1);
+  if (dx < 0 && lbProject && lbIndex < lbProject.items.length - 1) lbGoTo(lbIndex + 1);
+});
 
-filterBtns.forEach(btn => {
+// ── Render grid ─────────────────────────────────────────────────
+const INITIAL_COUNT = 6;
+let currentFilter = 'photo';
+let showAll = false;
+
+function buildCard(p) {
+  const cover = p.items[0];
+  const count = p.items.length;
+
+  const pos = p.coverPos ? ` style="object-position:${p.coverPos}"` : '';
+  const coverHTML = cover.type === 'video'
+    ? `<video src="${cover.src}" autoplay muted loop playsinline class="pcard__media"></video>`
+    : `<img src="${cover.src}" alt="${p.title}" loading="lazy" class="pcard__media"${pos} />`;
+
+  const badgeHTML = count > 1
+    ? `<div class="pcard__count">
+         <svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+         ${count}
+       </div>`
+    : '';
+
+  const playHTML = cover.type === 'video'
+    ? `<div class="pcard__play">
+         <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M8 5v14l11-7z"/></svg>
+       </div>`
+    : '';
+
+  const cls = ['pcard', p.wide ? 'pcard--wide' : '', p.tall ? 'pcard--tall' : ''].filter(Boolean).join(' ');
+
+  return `
+    <div class="${cls}" data-id="${p.id}" tabindex="0" role="button" aria-label="Відкрити проєкт ${p.title}">
+      <div class="pcard__thumb">${coverHTML}</div>
+      ${playHTML}
+      ${badgeHTML}
+      <div class="pcard__overlay">
+        <div class="pcard__open">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg>
+        </div>
+        <div class="pcard__meta">
+          <span class="tag${p.tagColor ? ' tag--' + p.tagColor : ''}">${p.tag}</span>
+          <h4 class="pcard__title">${p.title}</h4>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function setGridCols(list) {
+  const grid = document.getElementById('worksGrid');
+  const n = list.length;
+  if (!n) return;
+
+  const hasWide = list.some(p => p.wide);
+  let cols;
+
+  if (n === 1) {
+    cols = list[0].wide ? 2 : 1;
+  } else if (hasWide && n <= 3) {
+    // wide-елемент + мало карток → 2 колонки, щоб wide заповнив рядок
+    cols = 2;
+  } else {
+    cols = Math.min(n, 3);
+  }
+
+  grid.style.gridTemplateColumns = `repeat(${cols}, minmax(0, 420px))`;
+}
+
+function attachCardEvents(grid) {
+  grid.querySelectorAll('.pcard').forEach(card => {
+    const open = () => {
+      const project = PROJECTS.find(p => p.id === card.dataset.id);
+      if (project) openLightbox(project, 0);
+    };
+    card.addEventListener('click', open);
+    card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+    card.addEventListener('mouseenter', () => { dot.classList.add('hovering'); ring.classList.add('hovering'); });
+    card.addEventListener('mouseleave', () => { dot.classList.remove('hovering'); ring.classList.remove('hovering'); });
+  });
+}
+
+const BTN_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><polyline points="6 9 12 15 18 9"/></svg>`;
+
+function setButton(state, hiddenCount) {
+  const moreEl = document.getElementById('worksShowMore');
+  if (state === 'show') {
+    moreEl.innerHTML = `
+      <button class="show-more-btn" id="showMoreBtn">
+        Показати ще ${hiddenCount} ${BTN_SVG}
+      </button>`;
+    document.getElementById('showMoreBtn').addEventListener('click', showMoreCards);
+  } else if (state === 'hide') {
+    moreEl.innerHTML = `
+      <button class="show-more-btn show-more-btn--hide" id="hideBtn">
+        Сховати ${BTN_SVG}
+      </button>`;
+    document.getElementById('hideBtn').addEventListener('click', hideCards);
+  } else {
+    moreEl.innerHTML = '';
+  }
+}
+
+function appendCard(p, delay) {
+  const grid = document.getElementById('worksGrid');
+  const tmp  = document.createElement('div');
+  tmp.innerHTML = buildCard(p).trim();
+  const card = tmp.firstElementChild;
+  card.classList.add('pcard--entering');
+  grid.appendChild(card);
+  attachCardEvents(grid);
+
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    card.style.transitionDelay = delay + 's';
+    card.classList.remove('pcard--entering');
+    card.addEventListener('transitionend', () => { card.style.transitionDelay = ''; }, { once: true });
+  }));
+}
+
+function showMoreCards() {
+  const list   = currentFilter === 'all' ? PROJECTS : PROJECTS.filter(p => p.cat === currentFilter);
+  const toAdd  = list.slice(INITIAL_COUNT);
+  const moreEl = document.getElementById('worksShowMore');
+
+  moreEl.classList.add('fading');
+  setTimeout(() => {
+    showAll = true;
+    toAdd.forEach((p, i) => appendCard(p, i * 0.07));
+    setGridCols(list);
+    setButton('hide', list.length - INITIAL_COUNT);
+    moreEl.classList.remove('fading');
+  }, 200);
+}
+
+function hideCards() {
+  const grid   = document.getElementById('worksGrid');
+  const moreEl = document.getElementById('worksShowMore');
+  const cards  = [...grid.querySelectorAll('.pcard')];
+  const toRemove = cards.slice(INITIAL_COUNT);
+
+  moreEl.classList.add('fading');
+
+  toRemove.forEach((card, i) => {
+    card.style.transitionDelay = `${i * 0.05}s`;
+    card.classList.add('pcard--leaving');
+  });
+
+  const totalMs = (toRemove.length - 1) * 50 + 380;
+  setTimeout(() => {
+    toRemove.forEach(c => c.remove());
+    showAll = false;
+    const list = currentFilter === 'all' ? PROJECTS : PROJECTS.filter(p => p.cat === currentFilter);
+    setGridCols(list.slice(0, INITIAL_COUNT));
+    setButton('show', list.length - INITIAL_COUNT);
+    moreEl.classList.remove('fading');
+    document.getElementById('works').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, totalMs);
+}
+
+function _render() {
+  const grid   = document.getElementById('worksGrid');
+  const list   = currentFilter === 'all' ? PROJECTS : PROJECTS.filter(p => p.cat === currentFilter);
+  const display = list.slice(0, INITIAL_COUNT);
+  const hidden  = list.length - INITIAL_COUNT;
+
+  grid.innerHTML = display.map(buildCard).join('');
+  setGridCols(display);
+  attachCardEvents(grid);
+  grid.querySelectorAll('.pcard').forEach((el, i) => {
+    el.setAttribute('data-reveal', 'zoom-in');
+    el.dataset.revealDelay = +(i * 0.08).toFixed(2);
+    revealObserver.observe(el);
+  });
+
+  setButton(hidden > 0 ? 'show' : 'none', hidden);
+}
+
+function renderGrid(filter) {
+  currentFilter = filter;
+  showAll = false;
+  _render();
+}
+
+// ── Filter ──────────────────────────────────────────────────────
+document.querySelectorAll('.filter-btn').forEach(btn => {
   btn.addEventListener('click', () => {
-    filterBtns.forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-
-    const filter = btn.dataset.filter;
-    workItems.forEach(item => {
-      if (filter === 'all' || item.dataset.cat === filter) {
-        item.classList.remove('hidden');
-      } else {
-        item.classList.add('hidden');
-      }
-    });
+    renderGrid(btn.dataset.filter);
   });
 });
 
-// Contact form
+// ── Contact form ────────────────────────────────────────────────
 document.getElementById('contactForm').addEventListener('submit', e => {
   e.preventDefault();
-  const form = e.target;
-  form.innerHTML = `
+  e.target.innerHTML = `
     <div class="form-success">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
@@ -108,7 +544,7 @@ document.getElementById('contactForm').addEventListener('submit', e => {
   `;
 });
 
-// ── Scroll Reveal ──────────────────────────────────────────────
+// ── Scroll Reveal ───────────────────────────────────────────────
 const revealMap = [
   { sel: '.hero__content',     v: 'fade-right', delay: 0 },
   { sel: '.hero__visual',      v: 'fade-left',  delay: 0.2 },
@@ -120,7 +556,6 @@ const revealMap = [
   { sel: '.section-header',    v: 'fade-up',    delay: 0 },
   { sel: '.process__step',     v: 'zoom-up',    delay: null },
   { sel: '.service-card',      v: 'zoom-up',    delay: null },
-  { sel: '.work-item',         v: 'zoom-in',    delay: null },
   { sel: '.testi-card',        v: 'fade-up',    delay: null },
   { sel: '.contact__text',     v: 'fade-right', delay: 0 },
   { sel: '.contact__form',     v: 'fade-left',  delay: 0.2 },
@@ -130,8 +565,7 @@ const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (!entry.isIntersecting) return;
     const el = entry.target;
-    const delay = el.dataset.revealDelay || '0';
-    el.style.transitionDelay = delay + 's';
+    el.style.transitionDelay = (el.dataset.revealDelay || '0') + 's';
     el.classList.add('revealed');
     revealObserver.unobserve(el);
   });
@@ -139,9 +573,11 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 revealMap.forEach(({ sel, v, delay }) => {
   document.querySelectorAll(sel).forEach((el, i) => {
-    el.dataset.reveal = v;
     el.setAttribute('data-reveal', v);
     el.dataset.revealDelay = delay !== null ? delay : +(i * 0.12).toFixed(2);
     revealObserver.observe(el);
   });
 });
+
+// ── Initial render ──────────────────────────────────────────────
+renderGrid('photo');

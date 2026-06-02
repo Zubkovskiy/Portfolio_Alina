@@ -1,0 +1,24 @@
+# Text files — LF line endings
+* text=auto eol=lf
+
+# Binary — не перетворювати
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.PNG  binary
+*.JPG  binary
+*.gif  binary
+*.svg  binary
+*.ico  binary
+*.webp binary
+
+*.mp4  binary
+*.MP4  binary
+*.mov  binary
+*.MOV  binary
+*.webm binary
+
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.eot   binary
