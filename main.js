@@ -1,36 +1,41 @@
-// ── Custom cursor ──────────────────────────────────────────────
-const dot  = document.createElement('div');
-const ring = document.createElement('div');
-dot.className  = 'cursor-dot';
-ring.className = 'cursor-ring';
-document.body.append(dot, ring);
+// ── Custom cursor (тільки desktop з мишею) ─────────────────────
+const isTouch = window.matchMedia('(pointer: coarse)').matches;
+let dot = null, ring = null;
 
-let mx = 0, my = 0, rx = 0, ry = 0;
+if (!isTouch) {
+  dot  = document.createElement('div');
+  ring = document.createElement('div');
+  dot.className  = 'cursor-dot';
+  ring.className = 'cursor-ring';
+  document.body.append(dot, ring);
 
-document.addEventListener('mousemove', e => {
-  mx = e.clientX; my = e.clientY;
-  dot.style.left  = mx + 'px';
-  dot.style.top   = my + 'px';
-});
+  let mx = 0, my = 0, rx = 0, ry = 0;
 
-(function lerp() {
-  rx += (mx - rx) * 0.12;
-  ry += (my - ry) * 0.12;
-  ring.style.left = rx + 'px';
-  ring.style.top  = ry + 'px';
-  requestAnimationFrame(lerp);
-})();
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    dot.style.left = mx + 'px';
+    dot.style.top  = my + 'px';
+  });
 
-const hoverEls = 'a, button, .filter-btn, .pcard, .service-card, .testi-card, input, textarea, select';
-document.querySelectorAll(hoverEls).forEach(el => {
-  el.addEventListener('mouseenter', () => { dot.classList.add('hovering'); ring.classList.add('hovering'); });
-  el.addEventListener('mouseleave', () => { dot.classList.remove('hovering'); ring.classList.remove('hovering'); });
-});
+  (function lerp() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    requestAnimationFrame(lerp);
+  })();
 
-document.addEventListener('mousedown', () => { dot.classList.add('clicking'); ring.classList.add('clicking'); });
-document.addEventListener('mouseup',   () => { dot.classList.remove('clicking'); ring.classList.remove('clicking'); });
-document.addEventListener('mouseleave', () => { dot.style.opacity = '0'; ring.style.opacity = '0'; });
-document.addEventListener('mouseenter', () => { dot.style.opacity = '1'; ring.style.opacity = '1'; });
+  const hoverEls = 'a, button, .filter-btn, .pcard, .service-card, .testi-card, input, textarea, select';
+  document.querySelectorAll(hoverEls).forEach(el => {
+    el.addEventListener('mouseenter', () => { dot.classList.add('hovering'); ring.classList.add('hovering'); });
+    el.addEventListener('mouseleave', () => { dot.classList.remove('hovering'); ring.classList.remove('hovering'); });
+  });
+
+  document.addEventListener('mousedown', () => { dot.classList.add('clicking'); ring.classList.add('clicking'); });
+  document.addEventListener('mouseup',   () => { dot.classList.remove('clicking'); ring.classList.remove('clicking'); });
+  document.addEventListener('mouseleave', () => { dot.style.opacity = '0'; ring.style.opacity = '0'; });
+  document.addEventListener('mouseenter', () => { dot.style.opacity = '1'; ring.style.opacity = '1'; });
+}
 
 // ── NAV ────────────────────────────────────────────────────────
 const nav = document.getElementById('nav');
@@ -415,8 +420,8 @@ function attachCardEvents(grid) {
     };
     card.addEventListener('click', open);
     card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
-    card.addEventListener('mouseenter', () => { dot.classList.add('hovering'); ring.classList.add('hovering'); });
-    card.addEventListener('mouseleave', () => { dot.classList.remove('hovering'); ring.classList.remove('hovering'); });
+    card.addEventListener('mouseenter', () => { dot?.classList.add('hovering'); ring?.classList.add('hovering'); });
+    card.addEventListener('mouseleave', () => { dot?.classList.remove('hovering'); ring?.classList.remove('hovering'); });
   });
 }
 
