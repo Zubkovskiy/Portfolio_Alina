@@ -144,7 +144,11 @@ if (statsEl) counterObserver.observe(statsEl);
     const conn    = connectors[idx]; // connector між idx і idx+1
 
     schedule(T.card, () => {
-      if (!conn) { idx = nextIdx; runStep(); return; }
+      if (!conn) {
+        // Остання → перша: та ж затримка без коннектора
+        schedule(T.line + T.star + T.fade, () => { idx = nextIdx; runStep(); });
+        return;
+      }
 
       // Фаза 1: лінія загоряється зліва направо
       conn.classList.add('line-active');
