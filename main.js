@@ -113,6 +113,34 @@ if (statsEl) counterObserver.observe(statsEl);
 const yearEl = document.getElementById('footerYear');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+// ── Marquee init ───────────────────────────────────────────────
+function initMarquee() {
+  const track = document.querySelector('.marquee__track');
+  if (!track) return;
+  const group = track.querySelector('.marquee__group');
+  if (!group) return;
+
+  // Видаляємо попередні клони (якщо є)
+  track.querySelectorAll('.marquee__group ~ .marquee__group').forEach(g => g.remove());
+
+  const gw = group.getBoundingClientRect().width;
+  if (!gw) return;
+
+  // Клонуємо поки track не заповнить 2.5× ширини екрану
+  const needed = Math.ceil((window.innerWidth * 2.5) / gw) + 1;
+  for (let i = 1; i < needed; i++) {
+    const clone = group.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+    track.appendChild(clone);
+  }
+
+  // Анімуємо рівно на ширину однієї групи (px, не %)
+  track.style.setProperty('--mq-dist', `-${gw}px`);
+}
+
+// Чекаємо шрифти для точного вимірювання
+(document.fonts ? document.fonts.ready : Promise.resolve()).then(initMarquee);
+
 // ── Project data ───────────────────────────────────────────────
 // coverPos: 'top' | 'center' | 'bottom' | '50% 30%'
 // wide: true  → займає 2 колонки

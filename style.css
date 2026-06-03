@@ -675,7 +675,7 @@ ul { list-style: none; }
 .marquee__dot { color: var(--accent) !important; font-size: .7rem !important; }
 
 @keyframes marquee {
-  to { transform: translateX(-50%); }
+  to { transform: translateX(var(--mq-dist, -50%)); }
 }
 
 /* ============================
