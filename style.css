@@ -259,8 +259,22 @@ ul { list-style: none; }
   font-weight: 500;
   color: var(--text2);
   transition: color .2s;
+  position: relative;
+}
+.nav__links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent2), var(--accent));
+  border-radius: 2px;
+  transform: scaleX(0);
+  transition: transform .25s;
 }
 .nav__links a:hover { color: var(--text); }
+.nav__links a:hover::after,
+.nav__links a.nav-active::after { transform: scaleX(1); }
+.nav__links a.nav-active { color: var(--text); }
 
 .nav__cta {
   background: linear-gradient(135deg, var(--accent2), var(--accent));
@@ -466,8 +480,11 @@ ul { list-style: none; }
   display: block;
   font-size: 1.8rem;
   font-weight: 800;
-  color: var(--text);
   line-height: 1;
+  background: linear-gradient(135deg, var(--text) 30%, var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 .hero__stat span {
   font-size: .8rem;
@@ -1217,6 +1234,7 @@ video.lb-media { width: min(900px, 100%); }
   border: 1px solid rgba(176,110,243,.35);
   border-radius: var(--radius-lg);
   position: relative;
+  transition: transform .3s ease, border-color .3s, box-shadow .3s;
   overflow: hidden;
   transition: border-color .35s, transform .35s, box-shadow .35s;
   box-shadow: 0 4px 24px rgba(124,58,237,.12), inset 0 1px 0 rgba(255,255,255,.06);
@@ -1520,9 +1538,25 @@ video.lb-media { width: min(900px, 100%); }
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 32px;
-  transition: border-color .3s, transform .3s;
+  position: relative;
+  overflow: hidden;
+  transition: border-color .3s, transform .3s, box-shadow .3s;
 }
-.testi-card:hover { border-color: var(--border2); transform: translateY(-4px); }
+.testi-card::before {
+  content: '"';
+  position: absolute;
+  top: 12px; right: 20px;
+  font-size: 6rem; line-height: 1;
+  color: rgba(176,110,243,.08);
+  font-family: Georgia, serif;
+  pointer-events: none;
+  user-select: none;
+}
+.testi-card:hover {
+  border-color: rgba(176,110,243,.3);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0,0,0,.3);
+}
 
 .testi-card--accent {
   background: linear-gradient(135deg, rgba(124,58,237,.12), rgba(176,110,243,.06));
@@ -1543,8 +1577,8 @@ video.lb-media { width: min(900px, 100%); }
   margin-bottom: 24px;
   font-style: italic;
 }
-.testi-card p::before { content: '"'; }
-.testi-card p::after  { content: '"'; }
+.testi-card p::before { content: '"'; color: var(--accent); font-style: normal; }
+.testi-card p::after  { content: '"'; color: var(--accent); font-style: normal; }
 
 .testi-card__author {
   display: flex;
@@ -1650,6 +1684,7 @@ video.lb-media { width: min(900px, 100%); }
 .form-group select:focus,
 .form-group textarea:focus {
   border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(176,110,243,.1);
 }
 .form-group input::placeholder,
 .form-group textarea::placeholder { color: var(--text3); }
@@ -1683,6 +1718,7 @@ select option { background: var(--bg3); }
 .footer__logo {
   display: flex;
   align-items: center;
+  gap: 10px;
 }
 .footer__logo-img {
   height: 30px;
@@ -1731,6 +1767,28 @@ select option { background: var(--bg3); }
   margin: 0 auto 20px;
   color: #4ade80;
 }
+
+/* ============================
+   SCROLL TO TOP
+============================ */
+.scroll-top {
+  position: fixed;
+  bottom: 28px; right: 28px;
+  z-index: 500;
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent2), var(--accent));
+  border: none; color: #fff;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px var(--accent-glow);
+  opacity: 0; pointer-events: none;
+  transform: translateY(16px);
+  transition: opacity .3s, transform .3s, box-shadow .2s;
+}
+.scroll-top.visible { opacity: 1; pointer-events: all; transform: translateY(0); }
+.scroll-top:hover   { transform: translateY(-3px); box-shadow: 0 8px 32px var(--accent-glow); }
+.scroll-top svg     { width: 20px; height: 20px; }
 
 /* ============================
    TOUCH DEVICES — прибираємо курсор

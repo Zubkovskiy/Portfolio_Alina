@@ -58,6 +58,61 @@ document.querySelectorAll('.mm-link').forEach(link => {
   });
 });
 
+// ── Scroll-to-top ──────────────────────────────────────────────
+const scrollTopBtn = document.getElementById('scrollTopBtn');
+window.addEventListener('scroll', () => {
+  scrollTopBtn.classList.toggle('visible', window.scrollY > 500);
+}, { passive: true });
+scrollTopBtn.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// ── Nav scroll-spy ─────────────────────────────────────────────
+const navLinks   = document.querySelectorAll('.nav__links a[href^="#"]');
+const spySections = document.querySelectorAll('section[id]');
+
+const spyObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    navLinks.forEach(l => l.classList.remove('nav-active'));
+    const link = document.querySelector(`.nav__links a[href="#${entry.target.id}"]`);
+    if (link) link.classList.add('nav-active');
+  });
+}, { rootMargin: '-30% 0px -65% 0px' });
+
+spySections.forEach(s => spyObserver.observe(s));
+
+// ── Stat counter animation ─────────────────────────────────────
+function animateCount(el) {
+  const raw    = el.textContent;
+  const target = parseInt(raw);
+  const suffix = raw.replace(/[0-9]/g, '');
+  if (isNaN(target)) return;
+  const start  = performance.now();
+  const dur    = 1400;
+  (function tick(now) {
+    const p = Math.min((now - start) / dur, 1);
+    const e = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.floor(e * target) + suffix;
+    if (p < 1) requestAnimationFrame(tick);
+  })(start);
+}
+
+const counterObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    entry.target.querySelectorAll('.hero__stat strong').forEach(animateCount);
+    counterObserver.unobserve(entry.target);
+  });
+}, { threshold: 0.6 });
+
+const statsEl = document.querySelector('.hero__stats');
+if (statsEl) counterObserver.observe(statsEl);
+
+// ── Dynamic year ───────────────────────────────────────────────
+const yearEl = document.getElementById('footerYear');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
+
 // ── Project data ───────────────────────────────────────────────
 // coverPos: 'top' | 'center' | 'bottom' | '50% 30%'
 // wide: true  → займає 2 колонки
