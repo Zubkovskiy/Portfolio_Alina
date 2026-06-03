@@ -264,6 +264,43 @@ document.querySelectorAll('.form-group select').forEach(select => {
   wrapper.addEventListener('click', e => e.stopPropagation());
 });
 
+// ── Animated placeholder cycle ─────────────────────────────────
+document.querySelectorAll('[data-placeholder-cycle]').forEach(input => {
+  const words = input.dataset.placeholderCycle.split(',');
+  let wi = 0, ci = 0, deleting = false, timer = null;
+
+  function type() {
+    const word = words[wi];
+    if (!deleting) {
+      ci++;
+      input.placeholder = word.slice(0, ci);
+      if (ci === word.length) {
+        timer = setTimeout(() => { deleting = true; type(); }, 1800);
+        return;
+      }
+    } else {
+      ci--;
+      input.placeholder = word.slice(0, ci);
+      if (ci === 0) {
+        deleting = false;
+        wi = (wi + 1) % words.length;
+        timer = setTimeout(type, 400);
+        return;
+      }
+    }
+    timer = setTimeout(type, deleting ? 55 : 90);
+  }
+
+  // Починаємо коли поле не у фокусі
+  function start() { if (document.activeElement !== input) type(); }
+  function stop()  { clearTimeout(timer); input.placeholder = words[0]; }
+
+  input.addEventListener('focus', stop);
+  input.addEventListener('blur',  () => { wi = 0; ci = 0; deleting = false; start(); });
+
+  setTimeout(start, 1200);
+});
+
 // ── Dynamic year ───────────────────────────────────────────────
 const yearEl = document.getElementById('footerYear');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
