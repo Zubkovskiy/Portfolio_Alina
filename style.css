@@ -1858,7 +1858,7 @@ select option { background: var(--bg3); }
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: calc(var(--nav-h) + 40px) 20px 32px;
+    padding: calc(var(--nav-h) + 8px) 20px 8px;
     gap: 0;
   }
   .hero__badge { font-size: .73rem; padding: 7px 16px; margin-bottom: 22px; }
@@ -1917,7 +1917,7 @@ select option { background: var(--bg3); }
   .section-header { margin-bottom: 32px; }
   .section-title { font-size: clamp(1.5rem, 6vw, 2rem); }
 
-  .hero__inner { padding: calc(var(--nav-h) + 24px) 16px 24px; }
+  .hero__inner { padding: calc(var(--nav-h) + 6px) 16px 6px; }
   .hero__title { font-size: clamp(2.4rem, 11vw, 3rem); letter-spacing: -.02em; }
   .hero__actions { flex-direction: column; align-items: center; gap: 10px; }
   .hero__actions .btn { width: 100%; max-width: 300px; justify-content: center; }
