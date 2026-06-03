@@ -264,43 +264,6 @@ document.querySelectorAll('.form-group select').forEach(select => {
   wrapper.addEventListener('click', e => e.stopPropagation());
 });
 
-// ── Animated placeholder cycle ─────────────────────────────────
-document.querySelectorAll('[data-placeholder-cycle]').forEach(input => {
-  const words = input.dataset.placeholderCycle.split(',');
-  let wi = 0, ci = 0, deleting = false, timer = null;
-
-  function type() {
-    const word = words[wi];
-    if (!deleting) {
-      ci++;
-      input.placeholder = word.slice(0, ci);
-      if (ci === word.length) {
-        timer = setTimeout(() => { deleting = true; type(); }, 1800);
-        return;
-      }
-    } else {
-      ci--;
-      input.placeholder = word.slice(0, ci);
-      if (ci === 0) {
-        deleting = false;
-        wi = (wi + 1) % words.length;
-        timer = setTimeout(type, 400);
-        return;
-      }
-    }
-    timer = setTimeout(type, deleting ? 55 : 90);
-  }
-
-  // Починаємо коли поле не у фокусі
-  function start() { if (document.activeElement !== input) type(); }
-  function stop()  { clearTimeout(timer); input.placeholder = words[0]; }
-
-  input.addEventListener('focus', stop);
-  input.addEventListener('blur',  () => { wi = 0; ci = 0; deleting = false; start(); });
-
-  setTimeout(start, 1200);
-});
-
 // ── Dynamic year ───────────────────────────────────────────────
 const yearEl = document.getElementById('footerYear');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
@@ -814,6 +777,27 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 const TG_TOKEN   = '8373382072:AAGu3NUNscmqeZLsOdW8e4ozLhSk-JQ5Xhg';
 const TG_CHAT_ID = '443233079';
 
+function isValidEmail(v) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+}
+function isValidPhone(v) {
+  return /^[\+]?[\d\s\-\(\)]{7,15}$/.test(v.replace(/\s/g, ''));
+}
+function setFieldError(input, msg) {
+  input.classList.add('field-error');
+  let err = input.parentElement.querySelector('.field-error-msg');
+  if (!err) {
+    err = document.createElement('span');
+    err.className = 'field-error-msg';
+    input.parentElement.appendChild(err);
+  }
+  err.textContent = msg;
+}
+function clearFieldError(input) {
+  input.classList.remove('field-error');
+  input.parentElement.querySelector('.field-error-msg')?.remove();
+}
+
 document.getElementById('contactForm').addEventListener('submit', async e => {
   e.preventDefault();
   const form = e.target;
@@ -824,6 +808,28 @@ document.getElementById('contactForm').addEventListener('submit', async e => {
   const contact = (data.get('email')   || '').trim();
   const service = (data.get('service') || '—');
   const message = (data.get('message') || '').trim();
+
+  // Валідація
+  let hasError = false;
+
+  const nameInput    = form.querySelector('[name="name"]');
+  const contactInput = form.querySelector('[name="email"]');
+
+  clearFieldError(nameInput);
+  clearFieldError(contactInput);
+
+  if (name.length < 2) {
+    setFieldError(nameInput, 'Введіть ім\'я (мінімум 2 символи)');
+    hasError = true;
+  }
+  if (!contact) {
+    setFieldError(contactInput, 'Введіть email або номер телефону');
+    hasError = true;
+  } else if (!isValidEmail(contact) && !isValidPhone(contact)) {
+    setFieldError(contactInput, 'Невірний формат — введіть email або номер телефону');
+    hasError = true;
+  }
+  if (hasError) return;
 
   const text = `📩 <b>Нова заявка з сайту!</b>\n\n` +
                `👤 <b>Ім'я:</b> ${name}\n` +

@@ -1811,6 +1811,17 @@ select option { background: var(--bg3); }
 .custom-select__option.active { color: var(--accent); background: rgba(176,110,243,.08); }
 .custom-select__option.placeholder { color: var(--text3); }
 
+.field-error {
+  border-color: #f87171 !important;
+  box-shadow: 0 0 0 3px rgba(248,113,113,.12) !important;
+}
+.field-error-msg {
+  display: block;
+  font-size: .78rem;
+  color: #f87171;
+  margin-top: 5px;
+}
+
 .form-note {
   text-align: center;
   font-size: .8rem;
