@@ -1256,7 +1256,7 @@ video.lb-media { width: min(900px, 100%); }
 .process__step:hover,
 .process__step.auto-active {
   border-color: rgba(176,110,243,.75);
-  transform: translateY(-8px);
+  transform: scale(1.06);
   box-shadow: 0 24px 56px rgba(124,58,237,.3), 0 0 0 1px rgba(176,110,243,.3), 0 0 40px rgba(176,110,243,.12);
 }
 .process__step:hover::before,
