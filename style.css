@@ -655,13 +655,18 @@ ul { list-style: none; }
 .marquee__track {
   display: flex;
   align-items: center;
-  gap: 32px;
-  white-space: nowrap;
-  animation: marquee 30s linear infinite;
   width: max-content;
+  animation: marquee 28s linear infinite;
   will-change: transform;
 }
-.marquee__track span {
+.marquee__group {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  white-space: nowrap;
+  padding-right: 32px; /* відступ після останнього елементу = gap між групами */
+}
+.marquee__group span {
   font-size: .85rem;
   font-weight: 500;
   color: var(--text2);
@@ -670,8 +675,7 @@ ul { list-style: none; }
 .marquee__dot { color: var(--accent) !important; font-size: .7rem !important; }
 
 @keyframes marquee {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-33.333%); }
+  to { transform: translateX(-50%); }
 }
 
 /* ============================
@@ -1810,7 +1814,7 @@ select option { background: var(--bg3); }
     transition-duration: .01ms !important;
     scroll-behavior: auto !important;
   }
-  .marquee__track { animation: none; }
+  .marquee__track, .marquee__group { animation: none; }
 }
 
 /* ============================
@@ -1850,7 +1854,6 @@ select option { background: var(--bg3); }
   }
   /* коли display:contents — діти втрачають max-width батька */
   .hero__content.revealed > * {
-    width: 100%;
     max-width: min(100%, 540px);
     box-sizing: border-box;
   }
