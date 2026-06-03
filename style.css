@@ -96,7 +96,7 @@
   --nav-h: 72px;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 
 body {
   font-family: var(--font);
@@ -211,6 +211,7 @@ ul { list-style: none; }
   background: rgba(10,10,15,.85);
   backdrop-filter: blur(18px);
   border-bottom: 1px solid var(--border);
+  overflow: hidden;
 }
 
 .nav__inner {
@@ -1844,7 +1845,19 @@ select option { background: var(--bg3); }
 }
 
 @media (max-width: 768px) {
-  .hero__content.revealed { display: contents; }
+  .hero__content.revealed {
+    display: contents;
+  }
+  /* коли display:contents — діти втрачають max-width батька */
+  .hero__content.revealed > * {
+    width: 100%;
+    max-width: min(100%, 540px);
+    box-sizing: border-box;
+  }
+  .hero__content.revealed > .hero__stats {
+    max-width: 100%;
+    width: auto;
+  }
 
   .nav__links { display: none; }
   .nav__burger { display: flex; }
@@ -1961,6 +1974,9 @@ select option { background: var(--bg3); }
 
   .footer { padding: 28px 0; }
   .footer__copy { font-size: .78rem; }
+
+  .scroll-top { right: 12px; bottom: 16px; width: 40px; height: 40px; }
+  .scroll-top svg { width: 18px; height: 18px; }
 }
 
 /* ============================
