@@ -1844,6 +1844,8 @@ select option { background: var(--bg3); }
 }
 
 @media (max-width: 768px) {
+  .hero__content.revealed { display: contents; }
+
   .nav__links { display: none; }
   .nav__burger { display: flex; }
   .nav__logo-text { font-size: 1.1rem; }
