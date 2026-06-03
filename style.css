@@ -1271,7 +1271,7 @@ video.lb-media { width: min(900px, 100%); }
 .process__pulse {
   position: absolute;
   inset: -8px;
-  border-radius: 50%;
+  border-radius: 28px;
   border: 1.5px solid rgba(176,110,243,.55);
   animation: processPulse 2.5s ease-in-out infinite;
 }
