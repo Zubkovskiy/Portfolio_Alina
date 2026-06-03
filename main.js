@@ -360,7 +360,7 @@ const PROJECTS = [
     cat: 'photo',
     tag: 'Behind the scenes',    tagColor: '',
     title: 'Процес роботи',
-    coverPos: 'top',         
+    coverPos: 'center',         
     items: [
       { type: 'img', src: 'img/portfolio/Процес 1.jpg' },
       { type: 'img', src: 'img/portfolio/процес 2.jpg' },
@@ -377,7 +377,6 @@ const PROJECTS = [
     coverPos: 'center',        
     items: [
       { type: 'img', src: 'img/portfolio/візуалізація .jpg' },
-      { type: 'img', src: 'img/portfolio/дошка речей .jpg' },
       { type: 'img', src: 'img/portfolio/світшот .jpg' }
     ]
   },
@@ -774,8 +773,8 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 });
 
 // ── Contact form → Telegram ─────────────────────────────────────
-const TG_TOKEN   = '8373382072:AAGu3NUNscmqeZLsOdW8e4ozLhSk-JQ5Xhg';
-const TG_CHAT_ID = '443233079';
+const TG_TOKEN   = 'заміни тут';
+const TG_CHAT_ID = 'заміни тут';
 
 function isValidEmail(v) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);

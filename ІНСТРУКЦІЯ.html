@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Інструкція — Creatica Studio</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f0f14; color: #e0e0f0; line-height: 1.7; }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 48px 24px 80px; }
+  h1 { font-size: 2rem; font-weight: 800; margin-bottom: 8px; background: linear-gradient(135deg, #7c3aed, #b06ef3); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .subtitle { color: #8080a0; margin-bottom: 48px; }
+  h2 { font-size: 1.25rem; font-weight: 700; color: #fff; margin: 40px 0 14px; padding-left: 14px; border-left: 3px solid #b06ef3; }
+  h3 { font-size: 1rem; font-weight: 600; color: #c4a8ff; margin: 20px 0 8px; }
+  p  { color: #a0a0c0; margin-bottom: 12px; }
+  ul, ol { color: #a0a0c0; padding-left: 22px; margin-bottom: 12px; }
+  li { margin-bottom: 6px; }
+  code { background: #1e1e2e; border: 1px solid #2e2e42; border-radius: 5px; padding: 2px 7px; font-size: .88em; color: #b06ef3; font-family: 'Consolas', monospace; }
+  pre  { background: #1a1a28; border: 1px solid #2e2e42; border-radius: 10px; padding: 16px 20px; margin: 12px 0 20px; overflow-x: auto; }
+  pre code { background: none; border: none; padding: 0; color: #c4a8ff; font-size: .9em; }
+  .tip  { background: rgba(176,110,243,.1); border-left: 3px solid #b06ef3; border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; color: #c0b0e0; }
+  .warn { background: rgba(245,200,66,.08); border-left: 3px solid #f5c842; border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; color: #c8b870; }
+  .section { background: #16161f; border: 1px solid #2a2a3a; border-radius: 14px; padding: 24px 28px; margin-bottom: 16px; }
+  .num { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; background: linear-gradient(135deg,#7c3aed,#b06ef3); border-radius: 50%; font-size: .8rem; font-weight: 700; color: #fff; margin-right: 8px; flex-shrink: 0; vertical-align: middle; }
+  a { color: #b06ef3; }
+  hr { border: none; border-top: 1px solid #2a2a3a; margin: 36px 0; }
+  .badge { display: inline-block; background: rgba(176,110,243,.15); border: 1px solid rgba(176,110,243,.3); color: #b06ef3; border-radius: 50px; padding: 3px 10px; font-size: .8rem; font-weight: 600; margin-right: 6px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Інструкція до сайту</h1>
+  <p class="subtitle">Creatica Studio — повний гід для власника сайту</p>
+
+  <!-- ───── ЗМІСТ ───── -->
+  <div class="section">
+    <h2 style="margin-top:0">Зміст</h2>
+    <ol>
+      <li><a href="#run">Як відкрити/запустити сайт локально</a></li>
+      <li><a href="#portfolio">Як додавати роботи в портфоліо</a></li>
+      <li><a href="#align">Як вирівнювати фото на картках</a></li>
+      <li><a href="#telegram">Як налаштувати відправку форми в Telegram</a></li>
+      <li><a href="#github">Як розмістити на GitHub Pages (безкоштовно)</a></li>
+      <li><a href="#hosting">Як купити хостинг і домен</a></li>
+    </ol>
+  </div>
+
+  <hr>
+
+  <!-- ───── 1. ЗАПУСК ───── -->
+  <h2 id="run"><span class="num">1</span> Як відкрити сайт локально</h2>
+  <div class="section">
+    <p>Просто знайди файл <code>index.html</code> у папці сайту і відкрий його в браузері подвійним кліком. Більше нічого не потрібно — сайт не вимагає сервера.</p>
+    <div class="tip">💡 Для зручної розробки рекомендуємо VS Code + розширення <strong>Live Server</strong> — воно автоматично оновлює сайт при збереженні файлів.</div>
+  </div>
+
+  <hr>
+
+  <!-- ───── 2. ПОРТФОЛІО ───── -->
+  <h2 id="portfolio"><span class="num">2</span> Як додавати роботи в портфоліо</h2>
+
+  <div class="section">
+    <h3>Крок 1 — Додай файли в папку</h3>
+    <p>Скопіюй своє фото або відео в папку:</p>
+    <pre><code>img/portfolio/</code></pre>
+    <p>Файли можуть мати будь-яку назву. Підтримуються: <span class="badge">.jpg</span><span class="badge">.png</span><span class="badge">.webp</span><span class="badge">.mp4</span><span class="badge">.mov</span></p>
+  </div>
+
+  <div class="section">
+    <h3>Крок 2 — Відкрий main.js і знайди масив PROJECTS</h3>
+    <p>Відкрий файл <code>main.js</code> у будь-якому текстовому редакторі (наприклад Notepad++ або VS Code). Знайди блок:</p>
+    <pre><code>const PROJECTS = [
+  // ── AI-фото ──────────────────
+  {
+    id: 'fashion',
+    ...
+  },
+  ...</code></pre>
+    <p>Кожен об'єкт у масиві — це один проєкт на сторінці.</p>
+  </div>
+
+  <div class="section">
+    <h3>Крок 3 — Додай новий проєкт</h3>
+    <p>Скопіюй шаблон нижче і встав його в потрібний розділ:</p>
+    <pre><code>{
+  id: 'my-project',           // унікальна назва латиницею
+  cat: 'photo',               // категорія: photo | video | youtube | ad
+  tag: 'AI-фото · Beauty',    // текст тегу на картці
+  tagColor: '',               // колір тегу: '' | 'yellow' | 'pink'
+  title: 'Назва проєкту',     // назва в лайтбоксі
+  coverPos: 'top',            // вирівнювання обкладинки (див. розділ 3)
+  items: [
+    { type: 'img', src: 'img/portfolio/моє-фото.jpg' },
+    { type: 'img', src: 'img/portfolio/ще-одне.jpg' },
+  ]
+},</code></pre>
+    <div class="tip">💡 Якщо хочеш додати відео — зміни <code>type: 'img'</code> на <code>type: 'video'</code></div>
+
+    <h3 style="margin-top:20px">Додаткові параметри картки</h3>
+    <ul>
+      <li><code>wide: true</code> — картка займає 2 колонки (широка)</li>
+      <li><code>tall: true</code> — картка займає 2 рядки (висока)</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>Як згрупувати кілька фото в один проєкт</h3>
+    <p>Просто додай кілька файлів в масив <code>items</code>:</p>
+    <pre><code>items: [
+  { type: 'img', src: 'img/portfolio/фото-1.jpg' },
+  { type: 'img', src: 'img/portfolio/фото-2.jpg' },
+  { type: 'img', src: 'img/portfolio/фото-3.jpg' },
+  { type: 'video', src: 'img/portfolio/відео.mp4' },
+]</code></pre>
+    <p>На картці автоматично з'явиться значок з лічильником. При кліку відкривається галерея з навігацією.</p>
+  </div>
+
+  <hr>
+
+  <!-- ───── 3. ВИРІВНЮВАННЯ ───── -->
+  <h2 id="align"><span class="num">3</span> Як вирівнювати фото на картках</h2>
+
+  <div class="section">
+    <p>Параметр <code>coverPos</code> контролює яка частина фото видна в картці-обкладинці. Фото обрізається, тому важливо показати потрібну частину.</p>
+
+    <h3>Доступні значення</h3>
+    <ul>
+      <li><code>'top'</code> — показує верхню частину (обличчя, голова) <strong>← для портретів людей</strong></li>
+      <li><code>'center'</code> — показує центр (default) <strong>← для горизонтальних і дизайн-файлів</strong></li>
+      <li><code>'bottom'</code> — показує нижню частину</li>
+      <li><code>'50% 30%'</code> — точні координати: % горизонтально, % вертикально</li>
+    </ul>
+
+    <h3 style="margin-top:16px">Приклад тонкого налаштування</h3>
+    <pre><code>coverPos: '50% 20%'  // центр по горизонталі, 20% від верху</code></pre>
+
+    <div class="tip">💡 Якщо на картці відображається не та частина — просто зміни значення <code>coverPos</code> і збережи файл.</div>
+  </div>
+
+  <hr>
+
+  <!-- ───── 4. TELEGRAM ───── -->
+  <h2 id="telegram"><span class="num">4</span> Налаштування форми → Telegram</h2>
+
+  <div class="section">
+    <h3>Крок 1 — Створи свого бота</h3>
+    <ol>
+      <li>Відкрий Telegram і знайди <strong>@BotFather</strong></li>
+      <li>Напиши команду <code>/newbot</code></li>
+      <li>Дай боту ім'я (наприклад: <em>MyPortfolio Bot</em>)</li>
+      <li>Дай боту username що закінчується на <em>_bot</em> (наприклад: <em>myportfolio_bot</em>)</li>
+      <li>BotFather видасть тобі <strong>TOKEN</strong> — збережи його</li>
+    </ol>
+  </div>
+
+  <div class="section">
+    <h3>Крок 2 — Отримай свій Chat ID</h3>
+    <ol>
+      <li>Напиши будь-яке повідомлення своєму боту в Telegram</li>
+      <li>Відкрий в браузері це посилання (підстав свій токен):</li>
+    </ol>
+    <pre><code>https://api.telegram.org/bot<b>ТВІЙ_ТОКЕН</b>/getUpdates</code></pre>
+    <p>У відповіді знайди <code>"chat":{"id": 123456789}</code> — це і є твій <strong>Chat ID</strong>.</p>
+  </div>
+
+  <div class="section">
+    <h3>Крок 3 — Встав дані в main.js</h3>
+    <p>Відкрий файл <code>main.js</code>, знайди рядки:</p>
+    <pre><code>const TG_TOKEN   = '8373382072:AAGu...';
+const TG_CHAT_ID = '443233079';</code></pre>
+    <p>Заміни значення на свої:</p>
+    <pre><code>const TG_TOKEN   = 'ТВІЙ_ТОКЕН_ВІД_BOTFATHER';
+const TG_CHAT_ID = 'ТВІЙ_CHAT_ID';</code></pre>
+    <div class="warn">⚠️ Токен бота — це секретні дані. Не ділись ним з іншими людьми і не публікуй у відкритих постах.</div>
+  </div>
+
+  <hr>
+
+  <!-- ───── 5. GITHUB PAGES ───── -->
+  <h2 id="github"><span class="num">5</span> Розміщення на GitHub Pages (безкоштовно)</h2>
+
+  <div class="section">
+    <h3>Що таке GitHub Pages?</h3>
+    <p>Це безкоштовний хостинг від GitHub для статичних сайтів. Ідеально підходить для портфоліо. Адреса буде виглядати так: <code>https://твій-нікнейм.github.io/назва-репозиторію/</code></p>
+  </div>
+
+  <div class="section">
+    <h3>Крок 1 — Зареєструйся на GitHub</h3>
+    <p>Перейди на <a href="https://github.com" target="_blank">github.com</a> і створи безкоштовний акаунт.</p>
+  </div>
+
+  <div class="section">
+    <h3>Крок 2 — Створи репозиторій</h3>
+    <ol>
+      <li>Натисни кнопку <strong>New repository</strong></li>
+      <li>Назви його, наприклад: <code>portfolio</code></li>
+      <li>Постав галочку <strong>Public</strong></li>
+      <li>Натисни <strong>Create repository</strong></li>
+    </ol>
+  </div>
+
+  <div class="section">
+    <h3>Крок 3 — Завантаж файли</h3>
+    <p>На сторінці репозиторію натисни <strong>uploading an existing file</strong> і перетягни всі файли сайту (index.html, style.css, main.js, папку img). Натисни <strong>Commit changes</strong>.</p>
+    <div class="tip">💡 Або використай GitHub Desktop — безкоштовну програму для зручної роботи з Git без командного рядка: <a href="https://desktop.github.com" target="_blank">desktop.github.com</a></div>
+  </div>
+
+  <div class="section">
+    <h3>Крок 4 — Увімкни GitHub Pages</h3>
+    <ol>
+      <li>Перейди в <strong>Settings</strong> репозиторію</li>
+      <li>В лівому меню знайди <strong>Pages</strong></li>
+      <li>В розділі <em>Source</em> вибери <strong>Deploy from a branch</strong></li>
+      <li>Гілка: <strong>main</strong>, папка: <strong>/ (root)</strong></li>
+      <li>Натисни <strong>Save</strong></li>
+    </ol>
+    <p>Через 1-2 хвилини сайт буде доступний за посиланням яке з'явиться на тій же сторінці.</p>
+    <div class="warn">⚠️ Відео-файли розміром &gt;50 МБ можуть не завантажитись на GitHub Pages. Для важких відео краще використовувати платний хостинг або YouTube/Vimeo embed.</div>
+  </div>
+
+  <hr>
+
+  <!-- ───── 6. ХОСТИНГ ───── -->
+  <h2 id="hosting"><span class="num">6</span> Платний хостинг і власний домен</h2>
+
+  <div class="section">
+    <h3>Навіщо платний хостинг?</h3>
+    <ul>
+      <li>Власний домен: <code>linacreatica.com</code> замість github.io</li>
+      <li>Підтримка великих відео-файлів</li>
+      <li>Email на власному домені: <code>lina@linacreatica.com</code></li>
+      <li>Більша швидкість і надійність</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>Де купити домен</h3>
+    <p>Рекомендовані реєстратори:</p>
+    <ul>
+      <li><strong>Namecheap</strong> (<a href="https://namecheap.com" target="_blank">namecheap.com</a>) — дешевий, зручний</li>
+      <li><strong>NIC.UA</strong> (<a href="https://nic.ua" target="_blank">nic.ua</a>) — українські домени .ua, .com.ua</li>
+      <li><strong>Hostinger</strong> (<a href="https://hostinger.ua" target="_blank">hostinger.ua</a>) — домен + хостинг разом</li>
+    </ul>
+    <p>Домен зон <code>.com</code>, <code>.site</code>, <code>.studio</code> коштує від $8-15/рік.</p>
+  </div>
+
+  <div class="section">
+    <h3>Де купити хостинг</h3>
+    <p>Для простого статичного сайту достатньо найдешевшого тарифу:</p>
+    <ul>
+      <li><strong>Hostinger</strong> — від ≈$2-3/міс, є українська підтримка</li>
+      <li><strong>Netlify</strong> (<a href="https://netlify.com" target="_blank">netlify.com</a>) — <strong>безкоштовно</strong> для статичних сайтів, підтримує великі файли, власний домен</li>
+      <li><strong>Vercel</strong> (<a href="https://vercel.com" target="_blank">vercel.com</a>) — безкоштовно, дуже швидкий</li>
+    </ul>
+    <div class="tip">💡 <strong>Рекомендація:</strong> Netlify — безкоштовний, підтримує файли до 100 МБ, легко налаштовується. Купуєш домен окремо і прив'язуєш до Netlify безкоштовно.</div>
+  </div>
+
+  <div class="section">
+    <h3>Як завантажити сайт на Netlify</h3>
+    <ol>
+      <li>Зареєструйся на <a href="https://netlify.com" target="_blank">netlify.com</a></li>
+      <li>Натисни <strong>Add new site → Deploy manually</strong></li>
+      <li>Перетягни папку сайту в браузер</li>
+      <li>Сайт одразу доступний за автоматичною адресою</li>
+      <li>В налаштуваннях сайту: <strong>Domain settings → Add custom domain</strong> — вкажи свій домен</li>
+    </ol>
+  </div>
+
+  <hr>
+
+  <div class="section" style="text-align:center; padding: 32px;">
+    <p style="color:#6060a0; font-size:.9rem;">Якщо виникли питання — звертайся до розробника 🚀</p>
+  </div>
+
+</div>
+</body>
+</html>

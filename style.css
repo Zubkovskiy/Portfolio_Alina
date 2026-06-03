@@ -1957,7 +1957,7 @@ select option { background: var(--bg3); }
   .hero__content { max-width: 100%; }
 
   .about__inner { flex-direction: column; gap: 40px; text-align: center; }
-  .about__visual { flex: none; }
+  .about__visual { flex: none; min-height: auto; }
   .about__skills { justify-content: center; }
   .about__chip { display: none; }
   .about__photo-badge { right: 0; }
@@ -2040,7 +2040,7 @@ select option { background: var(--bg3); }
     transform: rotate(90deg);
     align-self: center;
     padding: 4px 0;
-    margin: -2px 0;
+    margin: 6px 0;
   }
   .process__step { max-width: 100%; width: 100%; padding: 22px 20px; }
 
@@ -2069,7 +2069,7 @@ select option { background: var(--bg3); }
   .hero__divider { height: 22px; }
 
   .about { padding: 60px 0; }
-  .about__photo-wrap { max-width: 100%; }
+  .about__photo-wrap { max-width: 220px; }
   .about__skills { gap: 8px; }
   .about__skills .skill-tag { font-size: .78rem; padding: 6px 12px; }
 
@@ -2083,7 +2083,7 @@ select option { background: var(--bg3); }
 
   .process { padding: 60px 0; }
   .process__step { padding: 18px 16px; }
-  .process__connector { padding: 2px 0; margin: -2px 0; }
+  .process__connector { padding: 2px 0; margin: 24px 0; }
 
   .testimonials { padding: 60px 0; }
   .testi-card { padding: 18px; font-size: .88rem; }
@@ -2105,6 +2105,26 @@ select option { background: var(--bg3); }
 
   .scroll-top { right: 12px; bottom: 16px; width: 40px; height: 40px; }
   .scroll-top svg { width: 18px; height: 18px; }
+}
+
+/* ============================
+   MOBILE — вимикаємо важкі анімації
+============================ */
+@media (max-width: 768px) {
+  /* Hero blobs — найважчі, вимикаємо */
+  .hero__blob { animation: none !important; }
+
+  /* Glow під фото "Про мене" */
+  .about__photo-glow { animation: none !important; }
+
+  /* Пульс процес-конектора */
+  .process__connector::after { animation: none !important; }
+
+  /* Glow на картках послуг */
+  .sv10-card::after { animation: none !important; opacity: 0; }
+
+  /* Scroll-down стрілочка */
+  .scroll-down-arrow { animation: none !important; }
 }
 
 /* ============================
