@@ -110,32 +110,86 @@ const statsEl = document.querySelector('.hero__stats');
 if (statsEl) counterObserver.observe(statsEl);
 
 // ── Process auto-hover cycle ───────────────────────────────────
-const processSteps = [...document.querySelectorAll('.process__step')];
-if (processSteps.length) {
-  let idx = 0;
-  let paused = false;
+// ── Process auto-hover cycle ───────────────────────────────────
+(function initProcessCycle() {
+  const steps      = [...document.querySelectorAll('.process__step')];
+  const connectors = [...document.querySelectorAll('.process__connector')];
+  if (!steps.length) return;
 
-  function activateStep(i) {
-    processSteps.forEach((s, j) => s.classList.toggle('auto-active', j === i));
+  let idx        = 0;
+  let paused     = false;
+  let cycleTimer = null;
+  let hoverTimer = null;
+
+  // Тривалості фаз (мс)
+  const T = { card: 650, line: 560, star: 420, fade: 320 };
+
+  function setActive(i) {
+    steps.forEach((s, j) => s.classList.toggle('auto-active', j === i));
     idx = i;
   }
 
-  activateStep(0);
-  setInterval(() => {
-    if (!paused) activateStep((idx + 1) % processSteps.length);
-  }, 1800);
+  function resetConnector(c) {
+    if (!c) return;
+    c.classList.remove('line-active', 'star-active', 'star-fade');
+  }
 
-  processSteps.forEach(step => {
+  function schedule(ms, fn) {
+    cycleTimer = setTimeout(() => { if (!paused) fn(); }, ms);
+  }
+
+  function runStep() {
+    setActive(idx);
+    const nextIdx = (idx + 1) % steps.length;
+    const conn    = connectors[idx]; // connector між idx і idx+1
+
+    schedule(T.card, () => {
+      if (!conn) { idx = nextIdx; runStep(); return; }
+
+      // Фаза 1: лінія загоряється зліва направо
+      conn.classList.add('line-active');
+
+      schedule(T.line, () => {
+        // Фаза 2: лінія тухне, зірочка загоряється
+        conn.classList.remove('line-active');
+        conn.classList.add('star-active');
+
+        schedule(T.star, () => {
+          // Фаза 3: зірочка тухне
+          conn.classList.add('star-fade');
+
+          schedule(T.fade, () => {
+            resetConnector(conn);
+            idx = nextIdx;
+            runStep();
+          });
+        });
+      });
+    });
+  }
+
+  // Debounce hover — не реагуємо на швидкий рух між картками
+  steps.forEach(step => {
     step.addEventListener('mouseenter', () => {
-      paused = true;
-      processSteps.forEach(s => s.classList.remove('auto-active'));
+      clearTimeout(hoverTimer);
+      hoverTimer = setTimeout(() => {
+        paused = true;
+        clearTimeout(cycleTimer);
+        connectors.forEach(resetConnector);
+        steps.forEach(s => s.classList.remove('auto-active'));
+      }, 260);
     });
     step.addEventListener('mouseleave', () => {
-      paused = false;
-      activateStep(idx);
+      clearTimeout(hoverTimer);
+      hoverTimer = setTimeout(() => {
+        paused = false;
+        runStep();
+      }, 320);
     });
   });
-}
+
+  runStep();
+})();
 
 // ── Custom select ──────────────────────────────────────────────
 document.querySelectorAll('.form-group select').forEach(select => {

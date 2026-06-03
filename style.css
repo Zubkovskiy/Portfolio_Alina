@@ -1336,11 +1336,48 @@ video.lb-media { width: min(900px, 100%); }
   align-self: center;
 }
 .process__connector-line {
-  width: 28px; height: 1px;
-  background: linear-gradient(to right, rgba(176,110,243,.4), rgba(176,110,243,.8));
-  box-shadow: 0 0 6px rgba(176,110,243,.4);
+  width: 28px; height: 2px;
+  background: rgba(176,110,243,.2);
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
 }
-.process__connector svg { flex-shrink: 0; filter: drop-shadow(0 0 4px rgba(176,110,243,.6)); }
+.process__connector-line::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, var(--accent2), var(--accent), #dbb8ff);
+  box-shadow: 0 0 8px var(--accent);
+  transform: translateX(-100%);
+  transition: none;
+}
+.process__connector.line-active .process__connector-line::after {
+  transform: translateX(0);
+  transition: transform .56s ease;
+}
+.process__connector.star-active .process__connector-line::after,
+.process__connector.star-fade   .process__connector-line::after {
+  transform: translateX(0);
+  opacity: .35;
+  transition: opacity .2s;
+}
+
+.process__connector svg {
+  flex-shrink: 0;
+  color: rgba(176,110,243,.55);
+  transition: color .25s, filter .25s, transform .3s, opacity .3s;
+  filter: none;
+}
+.process__connector.star-active svg {
+  color: #fff;
+  filter: drop-shadow(0 0 5px var(--accent)) drop-shadow(0 0 12px rgba(176,110,243,.9));
+  transform: scale(1.5) rotate(20deg);
+}
+.process__connector.star-fade svg {
+  opacity: 0;
+  transform: scale(.5);
+  filter: none;
+}
 
 /* ============================
    ABOUT
