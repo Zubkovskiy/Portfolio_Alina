@@ -109,6 +109,103 @@ const counterObserver = new IntersectionObserver(entries => {
 const statsEl = document.querySelector('.hero__stats');
 if (statsEl) counterObserver.observe(statsEl);
 
+// ── Process auto-hover cycle ───────────────────────────────────
+const processSteps = [...document.querySelectorAll('.process__step')];
+if (processSteps.length) {
+  let idx = 0;
+  let paused = false;
+
+  function activateStep(i) {
+    processSteps.forEach((s, j) => s.classList.toggle('auto-active', j === i));
+    idx = i;
+  }
+
+  activateStep(0);
+  setInterval(() => {
+    if (!paused) activateStep((idx + 1) % processSteps.length);
+  }, 1800);
+
+  processSteps.forEach(step => {
+    step.addEventListener('mouseenter', () => {
+      paused = true;
+      processSteps.forEach(s => s.classList.remove('auto-active'));
+    });
+    step.addEventListener('mouseleave', () => {
+      paused = false;
+      activateStep(idx);
+    });
+  });
+}
+
+// ── Custom select ──────────────────────────────────────────────
+document.querySelectorAll('.form-group select').forEach(select => {
+  select.style.display = 'none';
+  const wrapper = document.createElement('div');
+  wrapper.className = 'custom-select';
+  select.parentNode.insertBefore(wrapper, select);
+  wrapper.appendChild(select);
+
+  const label = document.createElement('span');
+  label.className = 'custom-select__label';
+  label.textContent = select.options[0]?.text || 'Оберіть';
+
+  const arrowSvg = `<svg class="custom-select__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>`;
+
+  const trigger = document.createElement('button');
+  trigger.type = 'button';
+  trigger.className = 'custom-select__trigger';
+  trigger.setAttribute('aria-haspopup', 'listbox');
+  trigger.setAttribute('aria-expanded', 'false');
+  trigger.innerHTML = `<span class="custom-select__label">${select.options[0]?.text || 'Оберіть'}</span>${arrowSvg}`;
+
+  const dropdown = document.createElement('ul');
+  dropdown.className = 'custom-select__dropdown';
+  dropdown.setAttribute('role', 'listbox');
+
+  [...select.options].forEach((opt, i) => {
+    const li = document.createElement('li');
+    li.className = 'custom-select__option' + (i === 0 ? ' placeholder' : '');
+    li.setAttribute('role', 'option');
+    li.textContent = opt.text;
+    li.dataset.value = opt.value;
+    li.addEventListener('click', e => {
+      e.stopPropagation();
+      select.value = opt.value;
+      const lbl = trigger.querySelector('.custom-select__label');
+      lbl.textContent = opt.text;
+      lbl.classList.toggle('selected', i !== 0);
+      dropdown.querySelectorAll('.custom-select__option').forEach(o => o.classList.remove('active'));
+      li.classList.add('active');
+      close();
+    });
+    dropdown.appendChild(li);
+  });
+
+  wrapper.appendChild(trigger);
+  wrapper.appendChild(dropdown);
+
+  let open = false;
+  function toggle() { open ? close() : openDrop(); }
+  function openDrop() {
+    open = true;
+    wrapper.classList.add('open');
+    trigger.setAttribute('aria-expanded', 'true');
+  }
+  function close() {
+    open = false;
+    wrapper.classList.remove('open');
+    trigger.setAttribute('aria-expanded', 'false');
+  }
+
+  trigger.addEventListener('click', e => { e.stopPropagation(); toggle(); });
+  trigger.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+    if (e.key === 'Escape') close();
+  });
+  document.addEventListener('click', close);
+  wrapper.addEventListener('click', e => e.stopPropagation());
+});
+
 // ── Dynamic year ───────────────────────────────────────────────
 const yearEl = document.getElementById('footerYear');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
